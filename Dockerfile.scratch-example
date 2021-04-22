@@ -1,0 +1,18 @@
+FROM dart:stable AS build
+
+# create a new console app for demonstration purposes
+RUN dart create --no-pub /usr/local/src/hello
+
+WORKDIR /usr/local/src/hello
+#COPY pubspec.yaml ./
+RUN dart pub get
+#COPY . .
+#RUN dart pub get --offline
+
+RUN dart compile exe bin/hello.dart -o /hello
+
+FROM scratch
+COPY --from=build /scratch-runtime/ /
+
+COPY --from=build /hello /bin/
+CMD ["hello"]
