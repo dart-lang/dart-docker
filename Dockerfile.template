@@ -11,7 +11,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 COPY install_dart.sh /usr/local/bin
-RUN /usr/local/bin/install_dart.sh 2.13.0-211.6.beta beta linux x64 /usr/lib/dart
+RUN /usr/local/bin/install_dart.sh {{DART_VERSION}} {{CHANNEL}} {{PLATFORM}} {{ARCH}} /usr/lib/dart
 
 ENV DART_SDK /usr/lib/dart
 ENV PATH $DART_SDK/bin:$PATH
