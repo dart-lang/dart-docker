@@ -1,10 +1,5 @@
 FROM debian:buster-slim
 
-#ENV DART_VERSION   {{DART_VERSION}}
-#ENV CHANNEL        {{CHANNEL}}
-#ENV PLATFORM       {{PLATFORM}}
-#ENV ARCH           {{ARCH}}
-
 ENV DART_VERSION   2.12.4
 ENV CHANNEL        stable
 ENV PLATFORM       linux

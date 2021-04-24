@@ -1,4 +1,5 @@
-# this file would be "library/dart" in https://github.com/docker-library/official-images
+# TODO: remove this file from *this* repo -- it's just here as a reminder for now:
+# This file would be "library/dart" in https://github.com/docker-library/official-images
 
 Maintainers: John Smith (@jsmithexample), Noah Wylie <nwylie@example.com> (@nwylieexample)
 GitRepo: https://github.com/tianon/docker-dart-sample.git
