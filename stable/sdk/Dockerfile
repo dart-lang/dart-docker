@@ -1,5 +1,17 @@
 FROM debian:buster-slim
 
+#ENV DART_VERSION   {{DART_VERSION}}
+#ENV CHANNEL        {{CHANNEL}}
+#ENV PLATFORM       {{PLATFORM}}
+#ENV ARCH           {{ARCH}}
+
+ENV DART_VERSION   2.12.4
+ENV CHANNEL        stable
+ENV PLATFORM       linux
+ENV ARCH           x64
+
+ENV DART_SDK /usr/lib/dart
+
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -11,16 +23,22 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-COPY install_dart.sh /usr/local/bin
-RUN /usr/local/bin/install_dart.sh 2.12.4 stable linux x64 /usr/lib/dart
+WORKDIR /root
+RUN set -eux; \
+    SDK="dartsdk-$PLATFORM-$ARCH-release.zip"; \
+    BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
+    URL="$BASEURL/$CHANNEL/release/$DART_VERSION/sdk/$SDK"; \
+    echo "SDK: $URL" >> dart_setup.log ; \
+    status=$(curl -O -L "$URL" -w "%{http_code}"); \
+    if [ "$status" -neq 200 ]; then echo "Error: HTTP status code: $status" >> error.log; exit 1; fi; \
+    # TODO: download *.sha256sum (see https://github.com/docker-library/official-images#security) \
+    unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK";
 
-ENV DART_SDK /usr/lib/dart
 ENV PATH $DART_SDK/bin:$PATH
-ENV DART_VERSION {{DART_VERSION}}
 
 # create a minimal "scratch" environment for creating hyper-minimal images
 # usage: COPY --from=dart:xxx /scratch-runtime/ /
-# use hard links here to save on space
+# uses hard links here to save space
 RUN set -eux; \
 	for f in \
 		/etc/nsswitch.conf \
