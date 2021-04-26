@@ -1,0 +1,10 @@
+name: hello
+description: A 'hello' server example using Docker and package:shelf.
+version: 1.0.0
+publish_to: none # Not intended for publishing to pub.dev.
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  shelf: ^1.1.0
