@@ -24,8 +24,7 @@ RUN set -eux; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
     URL="$BASEURL/$CHANNEL/release/$DART_VERSION/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
-    status=$(curl -O -L "$URL" -w "%{http_code}"); \
-    if [ "$status" -neq 200 ]; then echo "Error: HTTP status code: $status" >> error.log; exit 1; fi; \
+    curl -fLO "$URL"; \
     # TODO: download *.sha256sum (see https://github.com/docker-library/official-images#security) \
     unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK";
 
