@@ -13,7 +13,6 @@ RUN dart pub get
 RUN dart compile exe bin/hello.dart -o /hello
 
 FROM scratch
-COPY --from=build /scratch-runtime/ /
-
+COPY --from=build /runtime/ /
 COPY --from=build /hello /bin/
 CMD ["hello"]

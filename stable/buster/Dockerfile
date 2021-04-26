@@ -30,8 +30,9 @@ RUN set -eux; \
 
 ENV PATH $DART_SDK/bin:$PATH
 
-# create a minimal "scratch" environment for creating hyper-minimal images
-# usage: COPY --from=dart:xxx /scratch-runtime/ /
+# Create a minimal runtime environment for executing AOT-compiled Dart code
+# with the smallest possible image size.
+# usage: COPY --from=dart:xxx /runtime/ /
 # uses hard links here to save space
 RUN set -eux; \
 	for f in \
@@ -48,6 +49,6 @@ RUN set -eux; \
 		/usr/share/ca-certificates \
 	; do \
 		dir="$(dirname "$f")"; \
-		mkdir -p "/scratch-runtime$dir"; \
-		cp --archive --link --dereference --no-target-directory "$f" "/scratch-runtime$f"; \
+		mkdir -p "/runtime$dir"; \
+		cp --archive --link --dereference --no-target-directory "$f" "/runtime$f"; \
 	done

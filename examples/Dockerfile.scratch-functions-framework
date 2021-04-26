@@ -13,7 +13,7 @@ RUN dart compile exe bin/server.dart -o bin/server
 
 
 FROM scratch
-COPY --from=0 /scratch-runtime/ /
+COPY --from=0 /runtime/ /
 COPY --from=0 /app/bin/server /app/bin/server
 EXPOSE 8080
 ENTRYPOINT ["/app/bin/server"]
