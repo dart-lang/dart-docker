@@ -12,7 +12,7 @@ The [Docker Hub page] is generated/maintained over in the
 ## Using this image
 
 We recommend creating small runtime images by leveraging Dart's support for
-ahead-of-time (AOT) [compilation to executables][]. This enables creating small
+ahead-of-time (AOT) [compilation to executables]. This enables creating small
 runtime images (~10 MB).
 
 The following `Dockerfile` performs two steps:
@@ -29,7 +29,7 @@ FROM dart:stable AS build
 
 # Resolve app dependencies.
 WORKDIR /app
-COPY pubspec.yaml .
+COPY pubspec.* .
 RUN dart pub get
 
 # Copy app source code and AOT compile it.
@@ -47,7 +47,7 @@ EXPOSE 8080
 CMD ["/bin/server"]
 ```
 
-If you have [Docker Desktop][] installed, you can build and run with the
+If you have [Docker Desktop] installed, you can build and run with the
 `docker` command:
 
 ```
