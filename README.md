@@ -18,7 +18,7 @@ runtime images (~10 MB).
 The following `Dockerfile` performs two steps:
 
 1. Using the Dart SDK in the `dart:stable` image, compiles your server
-(`bin/server.dart`) to an executable.
+(`bin/server.dart`) to an executable (`server`).
 
 1. Assembles the runtime image by combining the compiled server with the Dart VM
 runtime and it's needed dependencies located in `/runtime/`.
