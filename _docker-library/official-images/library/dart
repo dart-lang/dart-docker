@@ -1,8 +1,8 @@
 # TODO: remove this file from *this* repo -- it's just here as a reminder for now:
 # This file would be "library/dart" in https://github.com/docker-library/official-images
 
-Maintainers: John Smith (@jsmithexample), Noah Wylie <nwylie@example.com> (@nwylieexample)
-GitRepo: https://github.com/tianon/docker-dart-sample.git
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@tonypujals)
+GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: c0fa5e7f259bd9f203154c8718e4a9403b52f2c5
 
