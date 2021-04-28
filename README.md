@@ -24,7 +24,7 @@ The following `Dockerfile` performs two steps:
 runtime and it's needed dependencies located in `/runtime/`.
 
 ```
-# Use latest stable channel SDK.
+# Specify the Dart SDK base image version using dart:<version>, e.g. dart:2.12
 FROM dart:stable AS build
 
 # Resolve app dependencies.
