@@ -36,8 +36,8 @@ RUN dart pub get
 COPY . .
 RUN dart compile exe bin/server.dart -o /server
 
-# Build minimal serving image from AOT-compiled `/server` and
-# required system libraries from `/runtime/` from the build stage.
+# Build minimal serving image from AOT-compiled `/server` and required system
+# libraries and configuration files stored in `/runtime/` from the build stage.
 FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /server /bin/
