@@ -73,7 +73,7 @@ https://dart.dev
 https://dart.dev
 
 [docker desktop]:
-(https://www.docker.com/get-started)
+https://www.docker.com/get-started
 
 [docker hub page]:
 https://hub.docker.com/_/dart/
