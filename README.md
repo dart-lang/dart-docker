@@ -23,7 +23,7 @@ The following `Dockerfile` performs two steps:
 1. Assembles the runtime image by combining the compiled server with the Dart VM
    runtime and it's needed dependencies located in `/runtime/`.
 
-```
+```Dockerfile
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
 FROM dart:stable AS build
 
@@ -50,7 +50,7 @@ CMD ["/bin/server"]
 If you have [Docker Desktop] installed, you can build and run on your machine
 with the `docker` command:
 
-```
+```shell
 $ docker build -t dart-server .
 $ docker run -it --rm -p 8080:8080 --name myserver dart-server
 ```
