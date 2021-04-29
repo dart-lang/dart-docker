@@ -37,7 +37,7 @@ COPY . .
 RUN dart compile exe bin/server.dart -o /server
 
 # Build minimal serving image from AOT-compiled `/server` and
-# the pre-built AOT-runtime from `/runtime/` from build stage.
+# required system libraries from `/runtime/` from the build stage.
 FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /server /bin/
@@ -47,12 +47,18 @@ EXPOSE 8080
 CMD ["/bin/server"]
 ```
 
-If you have [Docker Desktop] installed, you can build and run with the
-`docker` command:
+If you have [Docker Desktop] installed, you can build and run on your machine
+with the `docker` command:
 
 ```
 $ docker build -t dart-server .
-$ docker run -it --rm -p 8080:8080 dart-server
+$ docker run -it --rm -p 8080:8080 --name myserver dart-server
+```
+
+When finished, you can stop the container using the name you provided:
+
+```shell
+$ docker kill myserver
 ```
 
 Maintained with ❤️ by the [Dart] team.
