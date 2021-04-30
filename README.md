@@ -18,13 +18,13 @@ runtime images (~10 MB).
 The following `Dockerfile` performs two steps:
 
 1. Using the Dart SDK in the `dart:stable` image, compiles your server
-(`bin/server.dart`) to an executable (`server`).
+   (`bin/server.dart`) to an executable (`server`).
 
 1. Assembles the runtime image by combining the compiled server with the Dart VM
-runtime and it's needed dependencies located in `/runtime/`.
+   runtime and it's needed dependencies located in `/runtime/`.
 
-```
-# Specify the Dart SDK base image version using dart:<version>, e.g. dart:2.12
+```Dockerfile
+# Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
 FROM dart:stable AS build
 
 # Resolve app dependencies.
@@ -36,8 +36,8 @@ RUN dart pub get
 COPY . .
 RUN dart compile exe bin/server.dart -o /server
 
-# Build minimal serving image from AOT-compiled `/server`
-# and the pre-built AOT-runtime in `/runtime/`.
+# Build minimal serving image from AOT-compiled `/server` and required system
+# libraries and configuration files stored in `/runtime/` from the build stage.
 FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /server /bin/
@@ -47,12 +47,18 @@ EXPOSE 8080
 CMD ["/bin/server"]
 ```
 
-If you have [Docker Desktop] installed, you can build and run with the
-`docker` command:
+If you have [Docker Desktop] installed, you can build and run on your machine
+with the `docker` command:
 
+```shell
+$ docker build -t dart-server .
+$ docker run -it --rm -p 8080:8080 --name myserver dart-server
 ```
-$ docker build . -t dart-server
-$ docker run -it -p 8080:8080 dart-server
+
+When finished, you can stop the container using the name you provided:
+
+```shell
+$ docker kill myserver
 ```
 
 Maintained with ❤️ by the [Dart] team.
@@ -60,14 +66,14 @@ Maintained with ❤️ by the [Dart] team.
 
 <!-- Reference links -->
 
-[Dart]:
+[dart]:
 https://dart.dev
 
 [dart programming language]:
 https://dart.dev
 
-[Docker Desktop]:
-(https://www.docker.com/get-started)
+[docker desktop]:
+https://www.docker.com/get-started
 
 [docker hub page]:
 https://hub.docker.com/_/dart/
