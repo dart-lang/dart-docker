@@ -1,0 +1,18 @@
+name: Dart Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the beta Docker image
+      run: docker build beta/buster --file Dockerfile
+    - name: Build the stable Docker image
+      run: docker build stable/buster --file Dockerfile
