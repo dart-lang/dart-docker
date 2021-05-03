@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the beta Docker image
-      run: docker build beta/buster --file Dockerfile
+      run: cd beta/buster && docker build . --file Dockerfile
     - name: Build the stable Docker image
-      run: docker build stable/buster --file Dockerfile
+      run: cd stable/buster && docker build . --file Dockerfile
