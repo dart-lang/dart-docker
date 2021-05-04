@@ -1,0 +1,39 @@
+name: Scripts CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'scripts/**'
+  schedule:
+    - cron: "0 0 * * 0"
+
+defaults:
+  run:
+    working-directory: scripts
+
+env:
+  PUB_ENVIRONMENT: bot.github
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - id: install
+        name: Install dependencies
+        run: dart pub get
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+        if: always() && steps.install.outcome == 'success'
+      - name: Analyze code
+        run: dart analyze --fatal-infos
+        if: always() && steps.install.outcome == 'success'
+      - name: Run VM tests
+        run: dart test --platform vm
+        if: always() && steps.install.outcome == 'success'
