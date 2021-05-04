@@ -41,6 +41,7 @@ ENV PLATFORM       linux
 ENV ARCH           x64
 ENV CHANNEL        stable
 ENV DART_VERSION   2.12.4
+ENV DART_SHA256    479fd97114f8dc2e01a29bcf2c9fb46ff2c137390f6fe9f998a8d979604d33fd
 
 WORKDIR /root
 RUN set -eux; \
@@ -48,6 +49,7 @@ RUN set -eux; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
     URL="$BASEURL/$CHANNEL/release/$DART_VERSION/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
-    curl -fLO "$URL" && curl -fLO "$URL".sha256sum; \
-    sha256sum --status -c "$SDK".sha256sum; \
+    curl -fLO "$URL"; \
+    echo "$DART_SHA256 *$SDK" \
+    | sha256sum --check --status --strict -; \
     unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK";
