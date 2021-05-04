@@ -28,6 +28,7 @@ jobs:
       - id: generate-jobs
         name: Generate Jobs
         run: |
+          sed -i 's/image\=.*/image\=dart/' bashbrew/scripts/github-actions/generate.sh
           strategy="$(bashbrew/scripts/github-actions/generate.sh)"
           jq . <<<"$strategy" # sanity check / debugging aid
           echo "::set-output name=strategy::$strategy"
