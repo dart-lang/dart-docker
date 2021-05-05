@@ -20,7 +20,7 @@ env:
   PUB_ENVIRONMENT: bot.github
 
 jobs:
-  analyze:
+  analyze-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
