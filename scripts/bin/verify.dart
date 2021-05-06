@@ -3,20 +3,21 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:io';
-
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:http/http.dart' as http;
-import 'package:scripts/src/library.dart';
 import 'package:scripts/src/versions.dart';
 
-/// Reads `versions.json` and generates the `dart` library definition.
-void main() {
-  generateLibrary(const LocalFileSystem(), http.read);
+/// Downloads the latest versions on the Dart stable and beta channels and the
+/// relevant SHA256 checksums. For all versions that haven't changed, the script
+/// verifies that the checksums are still matching.
+void main() async {
+  await verify(const LocalFileSystem(), http.read);
 }
 
-void generateLibrary(FileSystem fileSystem, HttpRead read) {
+Future<void> verify(FileSystem fileSystem, HttpRead read) async {
   var versions = versionsFromFile(fileSystem, read);
-  stdout.write(buildLibrary(commit, versions));
+  await for (var version in Stream.fromIterable(versions)) {
+    await version.verify();
+  }
 }

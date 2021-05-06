@@ -2,31 +2,117 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:convert';
+
+import 'package:file/file.dart';
 import 'package:pub_semver/pub_semver.dart';
 
-/// The [Versions], usually parsed from a `versions.json` and their tags used in
-/// Dart's official docker library.
-class Versions {
-  /// The semantic [Version] of Dart in the stable docker image.
-  Version stable;
-  /// The semantic [Version] of Dart in the beta docker image.
-  Version beta;
-  /// The tags for the stable docker image.
-  String stableTags;
-  /// The tags for the beta docker image.
-  String betaTags;
+typedef HttpRead = Future<String> Function(Uri url,
+    {Map<String, String>? headers});
 
-  Versions(this.stable, this.beta, this.stableTags, this.betaTags);
+List<DartSdkVersion> versionsFromFile(FileSystem fileSystem, HttpRead read) {
+  var json = jsonDecode(fileSystem.file('versions.json').readAsStringSync());
+  return versionsFromJson(json, read);
+}
 
-  factory Versions.fromJson(Map<String, dynamic> json) {
-    var beta = Version.parse(json['beta']!);
-    var stable = Version.parse(json['stable']!);
-    var betaTags = '$beta-sdk, beta-sdk, $beta, beta';
-    var major = stable.major;
-    var minor = stable.minor;
-    var stableTags =
-        '$stable-sdk, $major.$minor-sdk, $major-sdk, stable-sdk, sdk, $stable, '
-        '$major.$minor, $major, stable, latest';
-    return Versions(stable, beta, stableTags, betaTags);
+List<DartSdkVersion> versionsFromJson(
+    Map<String, dynamic> json, HttpRead read) {
+  var stable = DartSdkVersion.fromJson('stable', json['stable']!, read);
+  var beta = DartSdkVersion.fromJson('beta', json['beta']!, read);
+  return [stable, beta];
+}
+
+void writeVersionsFile(FileSystem fileSystem, List<DartSdkVersion> versions) {
+  fileSystem
+      .file('versions.json')
+      .writeAsStringSync(JsonEncoder.withIndent('    ').convert({
+        for (var version in versions)
+          version.channel: {
+            'version': version.version.toString(),
+            'sha256': version.sha256,
+          }
+      }));
+}
+
+class DartSdkVersion {
+  static const sdk = 'dartsdk-linux-x64-release.zip';
+  static final baseUri =
+      Uri.https('storage.googleapis.com', 'dart-archive/channels/');
+
+  final String channel;
+  Version version;
+  String sha256;
+  final HttpRead _read;
+
+  DartSdkVersion(this.channel, this.version, this.sha256, this._read);
+
+  factory DartSdkVersion.fromJson(
+      String channel, Map<String, dynamic> json, HttpRead read) {
+    var version = Version.parse(json['version']!);
+    var sha256 = json['sha256']!;
+    return DartSdkVersion(channel, version, sha256, read);
+  }
+
+  String get tags {
+    if (channel == 'stable') {
+      var major = version.major;
+      var minor = version.minor;
+      return '$version-sdk, $major.$minor-sdk, $major-sdk, stable-sdk, sdk, '
+          '$version, $major.$minor, $major, stable, latest';
+    }
+    if (channel == 'beta') {
+      return '$version-sdk, beta-sdk, $version, beta';
+    }
+    throw StateError("Unsupported channel '$channel'");
+  }
+
+  @override
+  String toString() {
+    return version.toString();
+  }
+
+  Future<void> verify() async {
+    var remoteSha256 = await _readSha256(version);
+    if (sha256 != remoteSha256) {
+      throw StateError("Expected SHA256 '$sha256' but got '$remoteSha256'");
+    }
+  }
+
+  Future<bool> update() async {
+    var latest = await _readLatestVersion();
+    if (version == latest) {
+      return false;
+    }
+    sha256 = await _readSha256(latest);
+    version = latest;
+    return true;
+  }
+
+  Future<String> _readSha256(Version version) async {
+    var sha256Url =
+        baseUri.resolve('$channel/release/$version/sdk/$sdk.sha256sum');
+    var sha256sum = await _read(sha256Url);
+    if (!sha256sum.endsWith(sdk)) {
+      throw StateError("Expected file name $sdk in sha256sum:\n$sha256sum");
+    }
+    return sha256sum.split(' ').first;
+  }
+
+  Future<Version> _readLatestVersion() async {
+    var versionUrl = baseUri.resolve('$channel/release/latest/VERSION');
+    var versionJson = jsonDecode(await _read(versionUrl));
+    return Version.parse(versionJson['version']);
+  }
+
+  bool operator ==(Object other) {
+    return other is DartSdkVersion &&
+        other.channel == channel &&
+        other.version == version &&
+        other.sha256 == sha256;
+  }
+
+  @override
+  int get hashCode {
+    return channel.hashCode ^ version.hashCode ^ sha256.hashCode;
   }
 }

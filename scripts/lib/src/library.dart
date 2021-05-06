@@ -8,18 +8,22 @@ import 'package:scripts/src/versions.dart';
 
 /// Builds a library file for the official images repository based on the passed
 /// [commit] and [versions].
-String buildLibrary(String commit, Versions versions) => '''
+String buildLibrary(String commit, List<DartSdkVersion> versions) {
+  var library = StringBuffer('''
 Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@tonypujals)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: $commit
+''');
+  for (var version in versions) {
+    library.write('''
 
-Tags: ${versions.stableTags}
-Directory: stable/buster
-
-Tags: ${versions.betaTags}
-Directory: beta/buster
-''';
+Tags: ${version.tags}
+Directory: ${version.channel}/buster
+''');
+  }
+  return library.toString();
+}
 
 /// Uses `git rev-parse HEAD` to get the hash of the current commit.
 String get commit =>
