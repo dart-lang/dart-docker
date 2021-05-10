@@ -4,9 +4,8 @@
 
 import 'package:file/file.dart';
 import 'package:file/memory.dart';
-import 'package:scripts/src/versions.dart';
+import 'package:scripts/src/http.dart';
 
-final fakeRead = (_, {headers}) => throw 'unimplemented';
 const versions = '''{
     "stable": {
         "version": "2.12.4",
@@ -25,6 +24,7 @@ ENV DART_VERSION   {{DART_VERSION}}
 ENV DART_SHA256    {{DART_SHA256}}
 ''';
 
+final fakeRead = (_, {headers}) => throw 'unimplemented';
 HttpRead mockRead(Map<String, String> responses) {
   return (uri, {headers}) async {
     return responses.remove(uri.path) ?? (throw ArgumentError.value(uri.path));

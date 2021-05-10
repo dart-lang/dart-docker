@@ -7,8 +7,7 @@ import 'dart:convert';
 import 'package:file/file.dart';
 import 'package:pub_semver/pub_semver.dart';
 
-typedef HttpRead = Future<String> Function(Uri url,
-    {Map<String, String>? headers});
+import 'http.dart';
 
 List<DartSdkVersion> versionsFromFile(FileSystem fileSystem, HttpRead read) {
   var json = jsonDecode(fileSystem.file('versions.json').readAsStringSync());

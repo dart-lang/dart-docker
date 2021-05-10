@@ -5,7 +5,7 @@
 
 import 'package:file/file.dart';
 import 'package:file/local.dart';
-import 'package:http/http.dart' as http;
+import 'package:scripts/src/http.dart' as http;
 import 'package:scripts/src/versions.dart';
 
 /// Downloads the latest versions on the Dart stable and beta channels and the
@@ -15,7 +15,7 @@ void main() async {
   await verify(const LocalFileSystem(), http.read);
 }
 
-Future<void> verify(FileSystem fileSystem, HttpRead read) async {
+Future<void> verify(FileSystem fileSystem, http.HttpRead read) async {
   var versions = versionsFromFile(fileSystem, read);
   await for (var version in Stream.fromIterable(versions)) {
     await version.verify();
