@@ -1,0 +1,10 @@
+{
+    "stable": {
+        "version": "2.12.4",
+        "sha256": "479fd97114f8dc2e01a29bcf2c9fb46ff2c137390f6fe9f998a8d979604d33fd"
+    },
+    "beta": {
+        "version": "2.13.0-211.14.beta",
+        "sha256": "d33e7727eb3e49fda8c854a4aa894e642b1b760e0bf68ca382778f30242904c2"
+    }
+}
