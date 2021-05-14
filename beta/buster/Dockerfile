@@ -37,19 +37,15 @@ RUN set -eux; \
 ENV DART_SDK /usr/lib/dart
 ENV PATH $DART_SDK/bin:$PATH
 
-ENV PLATFORM       linux
-ENV ARCH           x64
-ENV CHANNEL        beta
-ENV DART_VERSION   2.13.0-211.14.beta
-ENV DART_SHA256    d33e7727eb3e49fda8c854a4aa894e642b1b760e0bf68ca382778f30242904c2
-
 WORKDIR /root
 RUN set -eux; \
-    SDK="dartsdk-$PLATFORM-$ARCH-release.zip"; \
+    ARCH=$(case "$(dpkg --print-architecture)" in amd64) echo "x64";; esac;); \
+    DART_VERSION=2.13.0-211.14.beta; \
+    SDK="dartsdk-linux-$ARCH-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
-    URL="$BASEURL/$CHANNEL/release/$DART_VERSION/sdk/$SDK"; \
+    URL="$BASEURL/beta/release/$DART_VERSION/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
     curl -fLO "$URL"; \
-    echo "$DART_SHA256 *$SDK" \
+    echo "d33e7727eb3e49fda8c854a4aa894e642b1b760e0bf68ca382778f30242904c2 *$SDK" \
     | sha256sum --check --status --strict -; \
     unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK";
