@@ -40,10 +40,9 @@ ENV PATH $DART_SDK/bin:$PATH
 WORKDIR /root
 RUN set -eux; \
     ARCH=$(case "$(dpkg --print-architecture)" in amd64) echo "x64";; esac;); \
-    DART_VERSION=2.13.0-211.14.beta; \
     SDK="dartsdk-linux-$ARCH-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
-    URL="$BASEURL/beta/release/$DART_VERSION/sdk/$SDK"; \
+    URL="$BASEURL/beta/release/2.13.0-211.14.beta/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
     curl -fLO "$URL"; \
     echo "d33e7727eb3e49fda8c854a4aa894e642b1b760e0bf68ca382778f30242904c2 *$SDK" \
