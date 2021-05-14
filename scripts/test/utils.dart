@@ -17,9 +17,7 @@ const versions = '''{
     }
 }''';
 const dockerfileTemplate = '''
-ENV PLATFORM       {{PLATFORM}}
-ENV ARCH           {{ARCH}}
-ENV CHANNEL        {{CHANNEL}}
+ENV DART_CHANNEL        {{DART_CHANNEL}}
 ENV DART_VERSION   {{DART_VERSION}}
 ENV DART_SHA256    {{DART_SHA256}}
 ''';
