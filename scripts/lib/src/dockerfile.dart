@@ -7,7 +7,7 @@ import 'package:scripts/src/versions.dart';
 /// Generate the `Dockerfile` for the [version] using a [template].
 String buildDockerfile(DartSdkVersion version, String template) {
   var variables = {
-    'CHANNEL': version.channel,
+    'DART_CHANNEL': version.channel,
     'DART_VERSION': version.version.toString(),
     'DART_SHA256': version.sha256,
   };
