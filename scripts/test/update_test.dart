@@ -57,9 +57,7 @@ void main() {
       FileSystemOp.write,
     ]);
     const expected = '''
-ENV PLATFORM       linux
-ENV ARCH           x64
-ENV CHANNEL        beta
+ENV DART_CHANNEL        beta
 ENV DART_VERSION   2.14.0-16.1.beta
 ENV DART_SHA256    abc
 ''';

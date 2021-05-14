@@ -7,13 +7,11 @@ import 'package:scripts/src/versions.dart';
 /// Generate the `Dockerfile` for the [version] using a [template].
 String buildDockerfile(DartSdkVersion version, String template) {
   var variables = {
-    'PLATFORM': 'linux',
-    'ARCH': 'x64',
-    'CHANNEL': version.channel,
+    'DART_CHANNEL': version.channel,
     'DART_VERSION': version.version.toString(),
     'DART_SHA256': version.sha256,
   };
-  var dockerfile = template.splitMapJoin(RegExp(r'{{(.*)}}'), onMatch: (match) {
+  var dockerfile = template.splitMapJoin(RegExp(r'{{(.*?)}}'), onMatch: (match) {
     var value = variables.remove(match[1]!);
     if (value == null) {
       throw StateError('Unknown template variable ${match[1]}');

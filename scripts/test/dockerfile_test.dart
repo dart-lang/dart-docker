@@ -15,9 +15,7 @@ var version =
 void main() {
   test('build dockerfile', () {
     const expected = '''
-ENV PLATFORM       linux
-ENV ARCH           x64
-ENV CHANNEL        stable
+ENV DART_CHANNEL        stable
 ENV DART_VERSION   3.14.1
 ENV DART_SHA256    abc
 ''';
@@ -33,7 +31,7 @@ ENV UNKNOWN       {{UNKNOWN}}
   });
 
   test('throws on missing variable', () {
-    const template = 'ENV PLATFORM       {{PLATFORM}}';
+    const template = 'ENV DART_VERSION       {{DART_VERSION}}';
     expect(() => buildDockerfile(version, template), throwsArgumentError);
   });
 }
