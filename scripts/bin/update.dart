@@ -19,7 +19,7 @@ void main() async {
 Future<void> update(FileSystem fileSystem, http.HttpRead read) async {
   var versions = versionsFromFile(fileSystem, read);
   var updated = <DartSdkVersion>{};
-  await for (var version in Stream.fromIterable(versions)) {
+  await for (var version in Stream.fromIterable(versions.values)) {
     if (await version.update()) {
       updated.add(version);
     }
@@ -27,7 +27,7 @@ Future<void> update(FileSystem fileSystem, http.HttpRead read) async {
   if (updated.isNotEmpty) {
     var template =
         fileSystem.file('Dockerfile-debian.template').readAsStringSync();
-    writeVersionsFile(fileSystem, versions);
+    writeVersionsFile(fileSystem, [versions['stable']!, versions['beta']!]);
     for (var version in updated) {
       var dockerfile = buildDockerfile(version, template);
       fileSystem

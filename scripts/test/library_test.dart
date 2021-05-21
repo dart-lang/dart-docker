@@ -15,9 +15,9 @@ void main() {
         DartSdkVersion('stable', Version.parse("2.12.4"), "abc", fakeRead);
     var beta = DartSdkVersion(
         'beta', Version.parse('2.13.0-211.6.beta'), "def", fakeRead);
-    var library = buildLibrary('abcdef', [stable, beta]);
+    var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@tonypujals)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: abcdef
@@ -27,6 +27,24 @@ Directory: stable/buster
 
 Tags: 2.13.0-211.6.beta-sdk, beta-sdk, 2.13.0-211.6.beta, beta
 Directory: beta/buster
+''';
+
+    expect(library, expected);
+  });
+
+  test('build library: stable is beta', () {
+    var stable =
+        DartSdkVersion('stable', Version.parse('2.13.0'), 'abc', fakeRead);
+    var beta = DartSdkVersion('beta', Version.parse('2.13.0'), 'abc', fakeRead);
+    var library = buildLibrary('abcdef', stable, beta);
+    var expected = '''
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
+GitRepo: https://github.com/dart-lang/dart-docker.git
+GitFetch: refs/heads/main
+GitCommit: abcdef
+
+Tags: 2.13.0-sdk, 2.13-sdk, 2-sdk, stable-sdk, sdk, 2.13.0, 2.13, 2, stable, latest, beta-sdk, beta
+Directory: stable/buster
 ''';
 
     expect(library, expected);

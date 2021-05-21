@@ -26,14 +26,22 @@ void main() {
       },
     }, fakeRead);
 
-    expect(versions[0], stable);
-    expect(versions[1], beta);
-    expect(
-        versions[0].tags,
-        '2.12.4-sdk, 2.12-sdk, 2-sdk, stable-sdk, sdk, 2.12.4, 2.12, 2, '
-        'stable, latest');
-    expect(versions[1].tags,
-        '2.13.0-211.6.beta-sdk, beta-sdk, 2.13.0-211.6.beta, beta');
+    expect(versions['stable'], stable);
+    expect(versions['beta'], beta);
+    expect(versions['stable']?.tags, [
+      '2.12.4-sdk',
+      '2.12-sdk',
+      '2-sdk',
+      'stable-sdk',
+      'sdk',
+      '2.12.4',
+      '2.12',
+      '2',
+      'stable',
+      'latest'
+    ]);
+    expect(versions['beta']?.tags,
+        ['2.13.0-211.6.beta-sdk', 'beta-sdk', '2.13.0-211.6.beta', 'beta']);
   });
 
   test('update, no update', () async {
