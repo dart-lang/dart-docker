@@ -35,8 +35,7 @@ Directory: beta/buster
   test('build library: stable is beta', () {
     var stable =
         DartSdkVersion('stable', Version.parse('2.13.0'), 'abc', fakeRead);
-    var beta = DartSdkVersion(
-        'beta', Version.parse('2.13.0'), 'abc', fakeRead);
+    var beta = DartSdkVersion('beta', Version.parse('2.13.0'), 'abc', fakeRead);
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
 Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)

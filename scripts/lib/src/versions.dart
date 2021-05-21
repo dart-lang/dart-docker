@@ -9,7 +9,8 @@ import 'package:pub_semver/pub_semver.dart';
 
 import 'http.dart';
 
-Map<String, DartSdkVersion> versionsFromFile(FileSystem fileSystem, HttpRead read) {
+Map<String, DartSdkVersion> versionsFromFile(
+    FileSystem fileSystem, HttpRead read) {
   var json = jsonDecode(fileSystem.file('versions.json').readAsStringSync());
   return versionsFromJson(json, read);
 }
@@ -56,8 +57,18 @@ class DartSdkVersion {
     if (channel == 'stable') {
       var major = version.major;
       var minor = version.minor;
-      return ['$version-sdk', '$major.$minor-sdk', '$major-sdk', 'stable-sdk', 'sdk',
-          '$version', '$major.$minor', '$major', 'stable', 'latest'];
+      return [
+        '$version-sdk',
+        '$major.$minor-sdk',
+        '$major-sdk',
+        'stable-sdk',
+        'sdk',
+        '$version',
+        '$major.$minor',
+        '$major',
+        'stable',
+        'latest'
+      ];
     }
     if (channel == 'beta') {
       return ['$version-sdk', 'beta-sdk', '$version', 'beta'];
