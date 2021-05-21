@@ -17,7 +17,7 @@ void main() async {
 
 Future<void> verify(FileSystem fileSystem, http.HttpRead read) async {
   var versions = versionsFromFile(fileSystem, read);
-  await for (var version in Stream.fromIterable(versions)) {
+  await for (var version in Stream.fromIterable(versions.values)) {
     await version.verify();
   }
 }
