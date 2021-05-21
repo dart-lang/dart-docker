@@ -17,7 +17,7 @@ void main() {
         'beta', Version.parse('2.13.0-211.6.beta'), "def", fakeRead);
     var library = buildLibrary('abcdef', [stable, beta]);
     var expected = '''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@tonypujals)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: abcdef
