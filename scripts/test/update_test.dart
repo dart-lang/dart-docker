@@ -21,7 +21,7 @@ void main() {
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
     });
-    await update.update(fileSystem.fileSystem, read);
+    await update.update(fileSystem.fileSystem, read, false);
 
     expect(fileSystem.contexts, ['versions.json']);
     expect(fileSystem.operations, [FileSystemOp.read]);
@@ -42,7 +42,7 @@ void main() {
       'beta/buster/Dockerfile': '',
     });
 
-    await update.update(fileSystem.fileSystem, read);
+    await update.update(fileSystem.fileSystem, read, false);
 
     expect(fileSystem.contexts, [
       'versions.json',
@@ -64,5 +64,65 @@ ENV DART_SHA256    abc
     expect(
         fileSystem.fileSystem.file('beta/buster/Dockerfile').readAsStringSync(),
         expected);
+  });
+
+  test('update succeedes, dockerfile update forced', () async {
+    var read = mockRead({
+      '/dart-archive/channels/stable/release/latest/VERSION':
+          '{"version":"2.12.4"}',
+      '/dart-archive/channels/beta/release/latest/VERSION':
+          '{"version":"2.13.0-211.14.beta"}',
+    });
+
+    var fileSystem = TestFileSystem.build({
+      'versions.json': versions,
+      'Dockerfile-debian.template': dockerfileTemplate,
+      'stable/buster/Dockerfile': '''
+ENV DART_CHANNEL        bugged
+ENV DART_VERSION   weird
+ENV DART_SHA256    off
+''',
+      'beta/buster/Dockerfile': '''
+ENV DART_CHANNEL        outdated
+ENV DART_VERSION   wrong
+ENV DART_SHA256    incorrect
+''',
+    });
+
+    await update.update(fileSystem.fileSystem, read, true);
+
+    expect(fileSystem.contexts, [
+      'versions.json',
+      'Dockerfile-debian.template',
+      'versions.json',
+      'stable/buster/Dockerfile',
+      'beta/buster/Dockerfile',
+    ]);
+    expect(fileSystem.operations, [
+      FileSystemOp.read,
+      FileSystemOp.read,
+      FileSystemOp.write,
+      FileSystemOp.write,
+      FileSystemOp.write,
+    ]);
+    const expectedBeta = '''
+ENV DART_CHANNEL        beta
+ENV DART_VERSION   2.13.0-211.14.beta
+ENV DART_SHA256    2.13.0-211.14.beta-sha
+''';
+    expect(
+        fileSystem.fileSystem.file('beta/buster/Dockerfile').readAsStringSync(),
+        expectedBeta);
+
+    const expectedStable = '''
+ENV DART_CHANNEL        stable
+ENV DART_VERSION   2.12.4
+ENV DART_SHA256    2.12.4-sha
+''';
+    expect(
+        fileSystem.fileSystem
+            .file('stable/buster/Dockerfile')
+            .readAsStringSync(),
+        expectedStable);
   });
 }
