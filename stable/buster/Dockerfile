@@ -5,9 +5,10 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        dnsutils \
+        git \
         openssh-client \
         unzip \
-        dnsutils \
     ; \
     rm -rf /var/lib/apt/lists/*
 
