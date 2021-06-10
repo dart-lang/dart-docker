@@ -1,10 +1,10 @@
 {
     "stable": {
-        "version": "2.13.1",
-        "sha256": "384b936b2033f9d57b94b2fae86202ba362bc5df811b5d98e401f0ec9fe5087f"
+        "version": "2.13.3",
+        "sha256": "b33ef6cc021e88345acd06333ddbbb5771130f4d23fdb6eb79dce7c31b78071c"
     },
     "beta": {
-        "version": "2.13.1",
-        "sha256": "384b936b2033f9d57b94b2fae86202ba362bc5df811b5d98e401f0ec9fe5087f"
+        "version": "2.13.3",
+        "sha256": "b33ef6cc021e88345acd06333ddbbb5771130f4d23fdb6eb79dce7c31b78071c"
     }
 }
