@@ -1,0 +1,47 @@
+name: Update dockerfiles CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/update.yml"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: >
+          The version to upgrade to, will be used as the branch name and in the
+          PR title (example: 2.13.0-133.1.beta).
+        required: true
+
+env:
+  PUB_ENVIRONMENT: bot.github
+  REVIEWERS: athomas,whesse,sortie,karlklose
+  VERSION: ${{github.event.inputs.version || 'ignore-test-version' }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - uses: dart-lang/setup-dart@v1
+      - id: install
+        name: Install dependencies
+        run: dart pub get
+        working-directory: scripts
+      - name: Create branch '${{env.VERSION}}'
+        run: git checkout -b $VERSION --track origin/main
+      - name: Update dockerfiles
+        run: scripts/bin/update.dart
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "Upgrade dart to $VERSION"
+          git push origin HEAD
+      - name: Create PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --head $VERSION --fill --reviewer $REVIEWERS
