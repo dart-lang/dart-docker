@@ -1,7 +1,7 @@
 {
     "stable": {
-        "version": "2.13.4",
-        "sha256": "633a9aa4812b725ff587e2bbf16cd5839224cfe05dcd536e1a74804e80fdb4cd"
+        "version": "2.14.0",
+        "sha256": "afc96a60d21fc43789da0efcd5fe859c7f852e39ce9646906af0c93b0c3db0c7"
     },
     "beta": {
         "version": "2.14.0-377.8.beta",
