@@ -4,7 +4,7 @@
         "sha256": "a615aec227431a6b15dd77c63904e505ba6b2882a48d4efad8fb20efe868a740"
     },
     "beta": {
-        "version": "2.14.1",
-        "sha256": "a615aec227431a6b15dd77c63904e505ba6b2882a48d4efad8fb20efe868a740"
+        "version": "2.15.0-82.1.beta",
+        "sha256": "168f8d95131f1d3b667605eacd481674abc03a48f1893919130937b0ad1b1641"
     }
 }
