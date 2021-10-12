@@ -43,9 +43,9 @@ RUN set -eux; \
     ARCH=$(case "$(dpkg --print-architecture)" in amd64) echo "x64";; esac;); \
     SDK="dartsdk-linux-$ARCH-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
-    URL="$BASEURL/beta/release/2.15.0-82.2.beta/sdk/$SDK"; \
+    URL="$BASEURL/beta/release/2.15.0-178.1.beta/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
     curl -fLO "$URL"; \
-    echo "3f23b4ca6d7ffeadad21cd69577eabcfb5d872cbd005f04b5d4f58c1866dcf04 *$SDK" \
+    echo "0aa79c07ab059598b434fce574591ea5e318aefc579b3fe0b27e985fc5159270 *$SDK" \
     | sha256sum --check --status --strict -; \
     unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK";
