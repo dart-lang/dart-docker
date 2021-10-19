@@ -8,10 +8,10 @@ import 'package:test/test.dart';
 
 import 'utils.dart';
 
-final stable =
-    DartSdkVersion('stable', Version.parse('2.12.4'), {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead);
-final beta =
-    DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'), {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'}, fakeRead);
+final stable = DartSdkVersion('stable', Version.parse('2.12.4'),
+    {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead);
+final beta = DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'),
+    {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'}, fakeRead);
 
 void main() {
   test('fromJson', () {
@@ -44,8 +44,8 @@ void main() {
         ['2.13.0-211.6.beta-sdk', 'beta-sdk', '2.13.0-211.6.beta', 'beta']);
     expect(versions['stable']?.sha256,
         {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'});
-    expect(versions['beta']?.sha256,
-        {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'});
+    expect(
+        versions['beta']?.sha256, {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'});
   });
 
   test('update, no update', () async {
@@ -53,8 +53,7 @@ void main() {
       '/dart-archive/channels/stable/release/latest/VERSION':
           '{"version":"2.12.4"}',
     });
-    var version =
-        DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
+    var version = DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
     expect(await version.update(), false);
   });
 
@@ -69,11 +68,12 @@ void main() {
       '/dart-archive/channels/stable/release/3.13.2/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'ghi *dartsdk-linux-arm64-release.zip',
     });
-    var version =
-        DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
+    var version = DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
     expect(await version.update(), true);
-    expect(version,
-        DartSdkVersion('stable', Version.parse('3.13.2'), {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead));
+    expect(
+        version,
+        DartSdkVersion('stable', Version.parse('3.13.2'),
+            {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead));
   });
 
   test('verify version succeeds', () async {
