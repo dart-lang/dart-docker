@@ -18,9 +18,17 @@ void main() {
   test('verify succeeds', () async {
     var read = mockRead({
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-x64-release.zip.sha256sum':
-          '2.12.4-sha *dartsdk-linux-x64-release.zip',
+          'abc *dartsdk-linux-x64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm-release.zip.sha256sum':
+          'def *dartsdk-linux-arm-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
+          'ghi *dartsdk-linux-arm64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-x64-release.zip.sha256sum':
-          '2.13.0-211.14.beta-sha *dartsdk-linux-x64-release.zip',
+          'jmn *dartsdk-linux-x64-release.zip',
+      '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm-release.zip.sha256sum':
+          'opq *dartsdk-linux-arm-release.zip',
+      '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
+          'rst *dartsdk-linux-arm64-release.zip',
     });
 
     await verify.verify(fileSystem, read);
@@ -29,9 +37,17 @@ void main() {
   test('verify fails', () {
     var read = mockRead({
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-x64-release.zip.sha256sum':
-          '2.12.4-sha *dartsdk-linux-x64-release.zip',
+          'abc *dartsdk-linux-x64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm-release.zip.sha256sum':
+          'def *dartsdk-linux-arm-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
+          'ghi *dartsdk-linux-arm64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-x64-release.zip.sha256sum':
-          'wrong-sha *dartsdk-linux-x64-release.zip',
+          'jmn *dartsdk-linux-x64-release.zip',
+      '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm-release.zip.sha256sum':
+          'wrong-sha *dartsdk-linux-arm-release.zip',
+      '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
+          'rst *dartsdk-linux-arm64-release.zip',
     });
 
     expect(() async => await verify.verify(fileSystem, read), throwsStateError);
