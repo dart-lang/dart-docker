@@ -9,7 +9,9 @@ String buildDockerfile(DartSdkVersion version, String template) {
   var variables = {
     'DART_CHANNEL': version.channel,
     'DART_VERSION': version.version.toString(),
-    'DART_SHA256': version.sha256,
+    'DART_SHA256_X64': version.sha256['x64'],
+    'DART_SHA256_ARM': version.sha256['arm'],
+    'DART_SHA256_ARM64': version.sha256['arm64'],
   };
   var dockerfile =
       template.splitMapJoin(RegExp(r'{{(.*?)}}'), onMatch: (match) {

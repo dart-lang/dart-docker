@@ -1,10 +1,18 @@
 {
     "stable": {
         "version": "2.14.4",
-        "sha256": "49b6a98008ef546cb9c221461529d6c02cf2474bff098e0dc7e4ff1ef0f8a289"
+        "sha256": {
+            "x64": "49b6a98008ef546cb9c221461529d6c02cf2474bff098e0dc7e4ff1ef0f8a289",
+            "arm": "796b64022615ea75f05f20a3d5e7018e52a1d26c06acb1d2b0b2faa5df491a64",
+            "arm64": "0477fae6fcff58fec18d912537f13d647fa0e137fce23401eea73102dce62351"
+        }
     },
     "beta": {
         "version": "2.15.0-178.1.beta",
-        "sha256": "0aa79c07ab059598b434fce574591ea5e318aefc579b3fe0b27e985fc5159270"
+        "sha256": {
+            "x64": "0aa79c07ab059598b434fce574591ea5e318aefc579b3fe0b27e985fc5159270",
+            "arm": "4d0e0b9c0f30ecc2f65c4ff786948d99a06fa42a9191fe3be63efc56d40bafae",
+            "arm64": "e62e1ad98ada15b694641868c6d78c984796a12fcad74635db3527844130c875"
+        }
     }
 }

@@ -9,17 +9,19 @@ import 'package:scripts/src/http.dart';
 const versions = '''{
     "stable": {
         "version": "2.12.4",
-        "sha256": "2.12.4-sha"
+        "sha256": {"x64": "abc", "arm": "def", "arm64": "ghi"}
     },
     "beta": {
         "version": "2.13.0-211.14.beta",
-        "sha256": "2.13.0-211.14.beta-sha"
+        "sha256": {"x64": "jmn", "arm": "opq", "arm64": "rst"}
     }
 }''';
 const dockerfileTemplate = '''
 ENV DART_CHANNEL        {{DART_CHANNEL}}
-ENV DART_VERSION   {{DART_VERSION}}
-ENV DART_SHA256    {{DART_SHA256}}
+ENV DART_VERSION        {{DART_VERSION}}
+ENV DART_SHA256_X64     {{DART_SHA256_X64}}
+ENV DART_SHA256_ARM     {{DART_SHA256_ARM}}
+ENV DART_SHA256_ARM64   {{DART_SHA256_ARM64}}
 ''';
 
 final fakeRead = (_, {headers}) => throw 'unimplemented';

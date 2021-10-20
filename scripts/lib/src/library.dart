@@ -30,6 +30,7 @@ GitCommit: $commit
 String _imageData(Iterable<String> tags, String channel) => '''
 
 Tags: ${tags.join(', ')}
+Architectures: amd64, arm32v7, arm64v8
 Directory: $channel/buster
 ''';
 
