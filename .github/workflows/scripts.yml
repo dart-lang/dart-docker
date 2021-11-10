@@ -37,3 +37,6 @@ jobs:
       - name: Run VM tests
         run: dart test --platform vm
         if: always() && steps.install.outcome == 'success'
+      - name: Generate library
+        run: dart scripts/bin/generate_library.dart
+        if: always() && steps.install.outcome == 'success'
