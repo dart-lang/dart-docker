@@ -41,4 +41,5 @@ jobs:
         if: always() && steps.install.outcome == 'success'
       - name: Generate library
         run: dart scripts/bin/generate_library.dart
+        working-directory: .
         if: always() && steps.install.outcome == 'success'
