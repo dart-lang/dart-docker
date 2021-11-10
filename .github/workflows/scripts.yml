@@ -4,10 +4,12 @@ on:
   push:
     branches: [ main ]
     paths:
+      - .github/workflows/scripts.yml
       - 'scripts/**'
   pull_request:
     branches: [ main ]
     paths:
+      - .github/workflows/scripts.yml
       - 'scripts/**'
   schedule:
     - cron: "0 0 * * 0"
