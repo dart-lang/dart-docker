@@ -53,6 +53,25 @@ Directory: stable/buster
     expect(library, expected);
   });
 
+  test('build library: stable is ahead of beta', () {
+    var stable =
+        DartSdkVersion('stable', Version.parse('2.13.0'), {}, fakeRead);
+    var beta = DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'), {}, fakeRead);
+    var library = buildLibrary('abcdef', stable, beta);
+    var expected = '''
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
+GitRepo: https://github.com/dart-lang/dart-docker.git
+GitFetch: refs/heads/main
+GitCommit: abcdef
+
+Tags: 2.13.0-sdk, 2.13-sdk, 2-sdk, stable-sdk, sdk, 2.13.0, 2.13, 2, stable, latest, beta-sdk, beta
+Architectures: amd64, arm32v7, arm64v8
+Directory: stable/buster
+''';
+
+    expect(library, expected);
+  });
+
   test('get commit test', () {
     expect(commit, matches(r'^\b[0-9a-f]{5,40}\b$'));
   });

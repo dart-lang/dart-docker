@@ -17,8 +17,7 @@ GitCommit: $commit
 ''');
   if (stable.version >= beta.version) {
     // stable is ahead of beta, that means stable _is_ beta.
-    var tags = stable.tags
-        .followedBy(beta.tags.where((tag) => !stable.tags.contains(tag)));
+    var tags = stable.tags.followedBy(['beta-sdk', 'beta']);
     library.write(_imageData(tags, 'stable'));
   } else {
     library.write(_imageData(stable.tags, 'stable'));
