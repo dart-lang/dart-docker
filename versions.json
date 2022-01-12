@@ -1,18 +1,18 @@
 {
     "stable": {
-        "version": "2.14.4",
+        "version": "2.15.1",
         "sha256": {
-            "x64": "49b6a98008ef546cb9c221461529d6c02cf2474bff098e0dc7e4ff1ef0f8a289",
-            "arm": "796b64022615ea75f05f20a3d5e7018e52a1d26c06acb1d2b0b2faa5df491a64",
-            "arm64": "0477fae6fcff58fec18d912537f13d647fa0e137fce23401eea73102dce62351"
+            "x64": "0f45dcaa53b4090b69b277b885ea9a4cb3a41589c9119113e1b978ad55ce335f",
+            "arm": "751935fc08dec2121410c3f2f33de8215d8a4e5f21192a4c42c4b81dd00f8659",
+            "arm64": "8836c294234352cc53e8aea4a1ce0442ebbb769a536ce7f309579da5020a2395"
         }
     },
     "beta": {
-        "version": "2.15.0-268.18.beta",
+        "version": "2.16.0-80.1.beta",
         "sha256": {
-            "x64": "c93c72123f27836e9a6131a5e24b46fede7570f0388b5c9afef8f71232fdaf84",
-            "arm": "6525d9b92bed7dde3576d59333c8367b92f1b4a6e6e005918717728c9451fe89",
-            "arm64": "aec5056aa84bf8813d75f392e1659646a868bbb944ff1d3fc5d95282b987f771"
+            "x64": "b758aefce016c0dfdc8b4e2941c88e0a5c0d29339c4432abd58fab4ef076d2dc",
+            "arm": "a6db5eae93c894effda6aeac737a304a31f56c48dcea21ab80fb7b16febbaa53",
+            "arm64": "1427731141075364bc2f6b2c89c3db28e781048b05149ab8d336ab213382aea6"
         }
     }
 }
