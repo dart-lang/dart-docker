@@ -67,7 +67,9 @@ ENV DART_SHA256_ARM     arm-sha
 ENV DART_SHA256_ARM64   arm64-sha
 ''';
     expect(
-        fileSystem.fileSystem.file('beta/bullseye/Dockerfile').readAsStringSync(),
+        fileSystem.fileSystem
+            .file('beta/bullseye/Dockerfile')
+            .readAsStringSync(),
         expected);
   });
 
@@ -118,7 +120,9 @@ ENV DART_SHA256_ARM     opq
 ENV DART_SHA256_ARM64   rst
 ''';
     expect(
-        fileSystem.fileSystem.file('beta/bullseye/Dockerfile').readAsStringSync(),
+        fileSystem.fileSystem
+            .file('beta/bullseye/Dockerfile')
+            .readAsStringSync(),
         expectedBeta);
 
     const expectedStable = '''
