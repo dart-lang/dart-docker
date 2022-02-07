@@ -42,7 +42,7 @@ void main() {
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'beta/buster/Dockerfile': '',
+      'beta/bullseye/Dockerfile': '',
     });
 
     await update.update(fileSystem.fileSystem, read, false);
@@ -51,7 +51,7 @@ void main() {
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'beta/buster/Dockerfile',
+      'beta/bullseye/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
@@ -67,7 +67,7 @@ ENV DART_SHA256_ARM     arm-sha
 ENV DART_SHA256_ARM64   arm64-sha
 ''';
     expect(
-        fileSystem.fileSystem.file('beta/buster/Dockerfile').readAsStringSync(),
+        fileSystem.fileSystem.file('beta/bullseye/Dockerfile').readAsStringSync(),
         expected);
   });
 
@@ -82,12 +82,12 @@ ENV DART_SHA256_ARM64   arm64-sha
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'stable/buster/Dockerfile': '''
+      'stable/bullseye/Dockerfile': '''
 ENV DART_CHANNEL        bugged
 ENV DART_VERSION   weird
 ENV DART_SHA256    off
 ''',
-      'beta/buster/Dockerfile': '''
+      'beta/bullseye/Dockerfile': '''
 ENV DART_CHANNEL        outdated
 ENV DART_VERSION   wrong
 ENV DART_SHA256    incorrect
@@ -100,8 +100,8 @@ ENV DART_SHA256    incorrect
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'stable/buster/Dockerfile',
-      'beta/buster/Dockerfile',
+      'stable/bullseye/Dockerfile',
+      'beta/bullseye/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
@@ -118,7 +118,7 @@ ENV DART_SHA256_ARM     opq
 ENV DART_SHA256_ARM64   rst
 ''';
     expect(
-        fileSystem.fileSystem.file('beta/buster/Dockerfile').readAsStringSync(),
+        fileSystem.fileSystem.file('beta/bullseye/Dockerfile').readAsStringSync(),
         expectedBeta);
 
     const expectedStable = '''
@@ -130,7 +130,7 @@ ENV DART_SHA256_ARM64   ghi
 ''';
     expect(
         fileSystem.fileSystem
-            .file('stable/buster/Dockerfile')
+            .file('stable/bullseye/Dockerfile')
             .readAsStringSync(),
         expectedStable);
   });
