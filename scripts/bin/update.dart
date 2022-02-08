@@ -40,7 +40,7 @@ Future<void> update(
     for (var version in updated) {
       var dockerfile = buildDockerfile(version, template);
       fileSystem
-          .file('${version.channel}/buster/Dockerfile')
+          .file('${version.channel}/bullseye/Dockerfile')
           .writeAsStringSync(dockerfile);
     }
   }
