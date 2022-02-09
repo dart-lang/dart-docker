@@ -1,18 +1,18 @@
 {
     "stable": {
+        "version": "2.16.1",
+        "sha256": {
+            "x64": "3cc63a0c21500bc5eb9671733843dcc20040b39fdc02f35defcf7af59f88d459",
+            "arm": "16e0143716b3ad956fcec78bdb15834bcd67619e61ced0a7806328e9d385b2b3",
+            "arm64": "de9d1c528367f83bbd192bd565af5b7d9d48f76f79baa4c0e4cf64723e3fb8be"
+        }
+    },
+    "beta": {
         "version": "2.16.0",
         "sha256": {
             "x64": "9fe86bde232de52d2211e47f5fdcc143ce936e309a8da1b447213e223d7f68d3",
             "arm": "b2420751b9661f2d8c89931fdffdc915526889291b345911c310487d3274f56b",
             "arm64": "34e08cd8412a7a40265d202630a2220df82589d353d106dc3bc4a902fd44060b"
-        }
-    },
-    "beta": {
-        "version": "2.16.0-134.6.beta",
-        "sha256": {
-            "x64": "315767a7242ad49d9003a5d4d43ebd7bbe8556c7a7ac1dbfc160d71216b732c6",
-            "arm": "4be3da81f0b1736476f8af0ba11a1874d88af9770d55ca4e116717fbe028e547",
-            "arm64": "95312f8e1253b9f67e800f4949972de39ed4870681c4544a799899a75bc1bdbd"
         }
     }
 }
