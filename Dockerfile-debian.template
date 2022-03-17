@@ -73,4 +73,5 @@ RUN set -eux; \
     curl -fLO "$URL"; \
     echo "$DART_SHA256 *$SDK" \
         | sha256sum --check --status --strict -; \
-    unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK" && chmod 755 "$DART_SDK" && chmod 755 "$DART_SDK/bin";
+    unzip "$SDK" && mv dart-sdk "$DART_SDK" && rm "$SDK" \
+        && chmod 755 "$DART_SDK" && chmod 755 "$DART_SDK/bin";
