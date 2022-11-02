@@ -105,7 +105,7 @@ class DartSdkVersion {
       var sha256Url =
           baseUri.resolve('$channel/release/$version/sdk/$sdk.sha256sum');
       var sha256sum = await _read(sha256Url);
-      if (!sha256sum.endsWith(sdk)) {
+      if (!sha256sum.trim().endsWith(sdk)) {
         throw StateError("Expected file name $sdk in sha256sum:\n$sha256sum");
       }
       sha256[arch] = sha256sum.split(' ').first;
