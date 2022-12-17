@@ -8,11 +8,11 @@
         }
     },
     "beta": {
-        "version": "2.19.0-444.1.beta",
+        "version": "2.19.0-444.2.beta",
         "sha256": {
-            "x64": "0cd028e661deded1b141348ebab1aa82814ee5a73ef226ff6c40ea225ff311a2",
-            "arm": "b53f16f3200dd395701b7c9d0cb6aafe8e39c2950e03d5f5b1f230fab3986242",
-            "arm64": "6c9384814d1d516eec616f40d22df161e219eb15d730105a28bf260f3274b4ed"
+            "x64": "9454bfc7eeab61dd7d9b13a393c0c2978ee5a71a2059c687b1b2e8e31eef6740",
+            "arm": "8b6d06901fda8603e9d0f91224f8d376ff10079a28491be33d84f5c9fbce816d",
+            "arm64": "b03f47f26373873643e7e7ce85fad3b6fe0220d1707be774288e9b4f1d9beddf"
         }
     }
 }
