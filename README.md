@@ -1,7 +1,7 @@
 # dart-docker
 
 This is the Git repo of the [Docker "Official Images"] for the
-[Dart programming language][dart].
+[Dart programming language][dart]. It's very good.
 
 See the [Docker Hub page] for a full description on how to use these Docker
 images as well as for information regarding contributing and issues.
