@@ -57,18 +57,18 @@ WORKDIR /root
 RUN set -eux; \
     case "$(dpkg --print-architecture)" in \
         amd64) \
-            DART_SHA256=da65d6733d9cca10f04cf981c97f3af7835e51afda84dce73f2e6fea8848c21b; \
+            DART_SHA256=ad962441d3f9c5fb2d7717d6589fb2eceb781d38ca1703ce8caa9e2d88296e9b; \
             SDK_ARCH="x64";; \
         armhf) \
-            DART_SHA256=0edea02e68ca5d6becbc58c1b70d378ad4b656f2832530cd57a2fb235aad5829; \
+            DART_SHA256=5c7283d15b040320aa0dd7fcd812f4102339dc5497238ea94b3bba5de1e67fbc; \
             SDK_ARCH="arm";; \
         arm64) \
-            DART_SHA256=b0cd5dacc35e56ca569125a0cdab4539580465a4c0f820311c3f7e22e6f817b4; \
+            DART_SHA256=408304dec3abf68af0ec1f1a2f44165c88b95fe661027f2b7ca7dea482513f36; \
             SDK_ARCH="arm64";; \
     esac; \
     SDK="dartsdk-linux-${SDK_ARCH}-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
-    URL="$BASEURL/beta/release/3.0.0-218.1.beta/sdk/$SDK"; \
+    URL="$BASEURL/beta/release/3.0.0-290.1.beta/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
     curl -fLO "$URL"; \
     echo "$DART_SHA256 *$SDK" \
