@@ -32,7 +32,8 @@ RUN set -eux; \
         riscv64) \
             TRIPLET="riscv64-linux-gnu" ; \
             FILES="/lib/ld-linux-riscv64-lp64d.so.1 \
-                /lib/riscv64-linux-gnu/ld-linux-riscv64-lp64d.so.1" ;; \
+                /lib/riscv64-linux-gnu/ld-linux-riscv64-lp64d.so.1 \
+                /usr/lib/riscv64-linux-gnu/libatomic.so.1" ;; \
         *) \
             echo "Unsupported architecture" ; \
             exit 5;; \
