@@ -26,7 +26,7 @@ void main() {
     expect(fileSystem.operations, [FileSystemOp.read]);
   });
 
-  test('update succeedes, dockerfile updated', () async {
+  test('update succeeds, dockerfile updated', () async {
     var read = mockRead({
       '/dart-archive/channels/stable/release/latest/VERSION':
           '{"version":"2.12.4"}',
@@ -73,7 +73,7 @@ ENV DART_SHA256_ARM64   arm64-sha
         expected);
   });
 
-  test('update succeedes, dockerfile update forced', () async {
+  test('update succeeds, dockerfile update forced', () async {
     var read = mockRead({
       '/dart-archive/channels/stable/release/latest/VERSION':
           '{"version":"2.12.4"}',
