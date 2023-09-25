@@ -24,11 +24,11 @@ GitCommit: abcdef
 
 Tags: 2.12.4-sdk, 2.12-sdk, 2-sdk, stable-sdk, sdk, 2.12.4, 2.12, 2, stable, latest
 Architectures: amd64, arm32v7, arm64v8
-Directory: stable/bullseye
+Directory: stable/bookworm
 
 Tags: 2.13.0-211.6.beta-sdk, beta-sdk, 2.13.0-211.6.beta, beta
 Architectures: amd64, arm32v7, arm64v8
-Directory: beta/bullseye
+Directory: beta/bookworm
 ''';
 
     expect(library, expected);
@@ -47,7 +47,7 @@ GitCommit: abcdef
 
 Tags: 2.13.0-sdk, 2.13-sdk, 2-sdk, stable-sdk, sdk, 2.13.0, 2.13, 2, stable, latest, beta-sdk, beta
 Architectures: amd64, arm32v7, arm64v8
-Directory: stable/bullseye
+Directory: stable/bookworm
 ''';
 
     expect(library, expected);
@@ -67,7 +67,7 @@ GitCommit: abcdef
 
 Tags: 2.13.0-sdk, 2.13-sdk, 2-sdk, stable-sdk, sdk, 2.13.0, 2.13, 2, stable, latest, beta-sdk, beta
 Architectures: amd64, arm32v7, arm64v8
-Directory: stable/bullseye
+Directory: stable/bookworm
 ''';
 
     expect(library, expected);
