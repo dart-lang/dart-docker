@@ -42,7 +42,7 @@ void main() {
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'beta/bullseye/Dockerfile': '',
+      'beta/bookworm/Dockerfile': '',
     });
 
     await update.update(fileSystem.fileSystem, read, false);
@@ -51,12 +51,14 @@ void main() {
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'beta/bullseye/Dockerfile',
+      'beta/bookworm',
+      'beta/bookworm/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
       FileSystemOp.read,
       FileSystemOp.write,
+      FileSystemOp.create,
       FileSystemOp.write,
     ]);
     const expected = '''
@@ -68,7 +70,7 @@ ENV DART_SHA256_ARM64   arm64-sha
 ''';
     expect(
         fileSystem.fileSystem
-            .file('beta/bullseye/Dockerfile')
+            .file('beta/bookworm/Dockerfile')
             .readAsStringSync(),
         expected);
   });
@@ -84,12 +86,12 @@ ENV DART_SHA256_ARM64   arm64-sha
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'stable/bullseye/Dockerfile': '''
+      'stable/bookworm/Dockerfile': '''
 ENV DART_CHANNEL        bugged
 ENV DART_VERSION   weird
 ENV DART_SHA256    off
 ''',
-      'beta/bullseye/Dockerfile': '''
+      'beta/bookworm/Dockerfile': '''
 ENV DART_CHANNEL        outdated
 ENV DART_VERSION   wrong
 ENV DART_SHA256    incorrect
@@ -102,14 +104,18 @@ ENV DART_SHA256    incorrect
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'stable/bullseye/Dockerfile',
-      'beta/bullseye/Dockerfile',
+      'stable/bookworm',
+      'stable/bookworm/Dockerfile',
+      'beta/bookworm',
+      'beta/bookworm/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
       FileSystemOp.read,
       FileSystemOp.write,
+      FileSystemOp.create,
       FileSystemOp.write,
+      FileSystemOp.create,
       FileSystemOp.write,
     ]);
     const expectedBeta = '''
@@ -121,7 +127,7 @@ ENV DART_SHA256_ARM64   rst
 ''';
     expect(
         fileSystem.fileSystem
-            .file('beta/bullseye/Dockerfile')
+            .file('beta/bookworm/Dockerfile')
             .readAsStringSync(),
         expectedBeta);
 
@@ -134,7 +140,7 @@ ENV DART_SHA256_ARM64   ghi
 ''';
     expect(
         fileSystem.fileSystem
-            .file('stable/bullseye/Dockerfile')
+            .file('stable/bookworm/Dockerfile')
             .readAsStringSync(),
         expectedStable);
   });

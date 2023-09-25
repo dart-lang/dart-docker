@@ -14,34 +14,36 @@ import 'package:scripts/src/versions.dart';
 /// relevant SHA256 checksums. For all versions that haven't changed, the script
 /// verifies that the checksums are still matching.
 void main(List<String> args) async {
-  var results = (ArgParser()
+  final results = (ArgParser()
         ..addFlag(
           'force',
           abbr: 'f',
         ))
       .parse(args);
-  var force = results['force'];
+  final force = results['force'];
   await update(const LocalFileSystem(), http.read, force);
 }
 
 Future<void> update(
     FileSystem fileSystem, http.HttpRead read, bool force) async {
-  var versions = versionsFromFile(fileSystem, read);
-  var updated = <DartSdkVersion>{};
-  await for (var version in Stream.fromIterable(versions.values)) {
+  final versions = versionsFromFile(fileSystem, read);
+  final updated = <DartSdkVersion>{};
+  await for (final version in Stream.fromIterable(versions.values)) {
     if (await version.update() || force) {
       updated.add(version);
     }
   }
   if (force || updated.isNotEmpty) {
-    var template =
+    final template =
         fileSystem.file('Dockerfile-debian.template').readAsStringSync();
     writeVersionsFile(fileSystem, [versions['stable']!, versions['beta']!]);
-    for (var version in updated) {
-      var dockerfile = buildDockerfile(version, template);
-      fileSystem
-          .file('${version.channel}/bullseye/Dockerfile')
-          .writeAsStringSync(dockerfile);
+    for (final version in updated) {
+      final dockerfileContent = buildDockerfile(version, template);
+      final dockerfile = (await fileSystem
+              .directory('${version.channel}/bookworm')
+              .create(recursive: true))
+          .childFile('Dockerfile');
+      await dockerfile.writeAsString(dockerfileContent);
     }
   }
 }
