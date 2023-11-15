@@ -1,18 +1,18 @@
 {
     "stable": {
-        "version": "3.1.5",
+        "version": "3.2.0",
         "sha256": {
-            "x64": "4342ba274a4e9f8057079cf9de43b1c7bdb002016ad538313e8ebe942b61bba8",
-            "arm": "b4f326bd045aae1d4b00a6a74b11d70937fc41291a9d8d62a123dab8bc3ac7d5",
-            "arm64": "0f0e19c276c99fa3efd6428ea4bef1502f742f2a1f9772959637eec775c10ba0"
+            "x64": "4ee368d9d359a6bd02fd0b617c31cc038373878260fd58e5575a29bfaff47773",
+            "arm": "643456fb31441dec020240e983c945d5dea2aafade865fc1aadca40ce4eb661b",
+            "arm64": "6051c47c73ebbfef227348635c53147cf234a4df43731c10e74b72297ff95b14"
         }
     },
     "beta": {
-        "version": "3.2.0-210.4.beta",
+        "version": "3.2.0",
         "sha256": {
-            "x64": "345fc18e2c2ab39db94fa9da34afb7d2f6bc7dff35cba66fc30429a68b4b52c4",
-            "arm": "b563fa1e44f847b552417c5a651ded4a508fc3379916e1ca2417bd0cdc5b61e8",
-            "arm64": "f2592ee85cab72c74b20e0f138f3acc023e9dc0e04e6aede25dd97ed78311873"
+            "x64": "4ee368d9d359a6bd02fd0b617c31cc038373878260fd58e5575a29bfaff47773",
+            "arm": "643456fb31441dec020240e983c945d5dea2aafade865fc1aadca40ce4eb661b",
+            "arm64": "6051c47c73ebbfef227348635c53147cf234a4df43731c10e74b72297ff95b14"
         }
     }
 }
