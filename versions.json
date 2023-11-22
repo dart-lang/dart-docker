@@ -1,18 +1,18 @@
 {
     "stable": {
-        "version": "3.2.0",
+        "version": "3.2.1",
         "sha256": {
-            "x64": "4ee368d9d359a6bd02fd0b617c31cc038373878260fd58e5575a29bfaff47773",
-            "arm": "643456fb31441dec020240e983c945d5dea2aafade865fc1aadca40ce4eb661b",
-            "arm64": "6051c47c73ebbfef227348635c53147cf234a4df43731c10e74b72297ff95b14"
+            "x64": "5fbdb0b5a2c2917b48f9cc433942580796630cfa807b25829015d52c60cbb13d",
+            "arm": "a9ab3f262cee396fbb0b2b20810a0ddc44b8e91e88191c87a3f50c2979db1f64",
+            "arm64": "3db9be1fc744cae98e45b67418e8cc16e845c0d37351665c6f21f992d9dbc6d8"
         }
     },
     "beta": {
-        "version": "3.2.0",
+        "version": "3.2.1",
         "sha256": {
-            "x64": "4ee368d9d359a6bd02fd0b617c31cc038373878260fd58e5575a29bfaff47773",
-            "arm": "643456fb31441dec020240e983c945d5dea2aafade865fc1aadca40ce4eb661b",
-            "arm64": "6051c47c73ebbfef227348635c53147cf234a4df43731c10e74b72297ff95b14"
+            "x64": "5fbdb0b5a2c2917b48f9cc433942580796630cfa807b25829015d52c60cbb13d",
+            "arm": "a9ab3f262cee396fbb0b2b20810a0ddc44b8e91e88191c87a3f50c2979db1f64",
+            "arm64": "3db9be1fc744cae98e45b67418e8cc16e845c0d37351665c6f21f992d9dbc6d8"
         }
     }
 }
