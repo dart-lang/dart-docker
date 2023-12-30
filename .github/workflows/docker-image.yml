@@ -39,7 +39,7 @@ jobs:
           sed -i 's/image\=.*/image\=dart/' bashbrew/scripts/github-actions/generate.sh
           strategy="$(bashbrew/scripts/github-actions/generate.sh)"
           jq . <<<"$strategy" # sanity check / debugging aid
-          echo "::set-output name=strategy::$strategy"
+          echo "strategy=$strategy" >> $GITHUB_OUTPUT
   test:
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
