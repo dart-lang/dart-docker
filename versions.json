@@ -1,10 +1,10 @@
 {
     "stable": {
-        "version": "3.2.5",
+        "version": "3.2.6",
         "sha256": {
-            "x64": "e35e66f6cb5f511eb909fc27f9cebe81712925b6abd4494310003cdf26410ab1",
-            "arm": "9b08a544e8e6438c136fcef04348e0b796ee4125eab291b2657b56b3df60e8dc",
-            "arm64": "aa840a615e90fc26ca0ca348be8359b254a144cff6a0e2c3f7eb361ed9aef393"
+            "x64": "253390a14f6f5d764c82df4b2c2cf18a1c30a8e1fe0849448cc4fedabaaf1d48",
+            "arm": "ee647813284e4464a46ffcf9af36ef8d891494056238f7b52a0485fcdefedb5a",
+            "arm64": "9818a37dd39e8e91a0159bdd2522213f9d36bbd99b715465b4606190e6ae41c3"
         }
     },
     "beta": {
