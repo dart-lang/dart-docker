@@ -1,9 +1,8 @@
 name: Dart Docker Check Tags on DockerHub
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: 0 0 * * 0
+    - cron: '04 8 * * *' # At 0804 each day
 
 permissions:
   contents: read
