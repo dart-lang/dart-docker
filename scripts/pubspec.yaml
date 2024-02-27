@@ -9,7 +9,7 @@ dependencies:
   args: ^2.4.2
   collection: ^1.18.0
   file: ^7.0.0
-  http: ^1.2.0
+  http: ^1.2.1
   pub_semver: ^2.1.4
 
 dev_dependencies:
