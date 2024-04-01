@@ -23,12 +23,12 @@ jobs:
       strategy: ${{ steps.generate-jobs.outputs.strategy }}
     steps:
       - uses: dart-lang/setup-dart@fedb1266e91cf51be2fdb382869461a434b920a3
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
       - id: install
         name: Install dependencies
         run: dart pub get
         working-directory: scripts
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
           path: bashbrew
           ref: v0.1.2
@@ -46,7 +46,7 @@ jobs:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
       - name: Prepare Environment
         run: ${{ matrix.runs.prepare }}
       - name: Pull Dependencies
