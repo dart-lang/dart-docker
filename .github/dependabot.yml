@@ -9,6 +9,10 @@ updates:
       interval: "monthly"
     labels:
       - type-infra
+    groups:
+      github-actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: "pub"
     directory: "/scripts"
