@@ -7,7 +7,7 @@ environment:
 
 dependencies:
   args: ^2.6.0
-  collection: ^1.19.0
+  collection: ^1.19.1
   file: ^7.0.0
   http: ^1.2.2
   pub_semver: ^2.1.4
