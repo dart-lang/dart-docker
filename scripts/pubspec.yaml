@@ -10,7 +10,7 @@ dependencies:
   collection: ^1.19.1
   file: ^7.0.1
   http: ^1.2.2
-  pub_semver: ^2.1.4
+  pub_semver: ^2.1.5
 
 dev_dependencies:
   dart_flutter_team_lints: ^3.2.1
