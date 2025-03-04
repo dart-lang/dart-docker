@@ -11,13 +11,17 @@ import 'package:pub_semver/pub_semver.dart';
 import 'http.dart';
 
 Map<String, DartSdkVersion> versionsFromFile(
-    FileSystem fileSystem, HttpRead read) {
+  FileSystem fileSystem,
+  HttpRead read,
+) {
   var json = jsonDecode(fileSystem.file('versions.json').readAsStringSync());
   return versionsFromJson(json, read);
 }
 
 Map<String, DartSdkVersion> versionsFromJson(
-    Map<String, dynamic> json, HttpRead read) {
+  Map<String, dynamic> json,
+  HttpRead read,
+) {
   var stable = DartSdkVersion.fromJson('stable', json['stable']!, read);
   var beta = DartSdkVersion.fromJson('beta', json['beta']!, read);
   return {'stable': stable, 'beta': beta};
@@ -26,18 +30,22 @@ Map<String, DartSdkVersion> versionsFromJson(
 void writeVersionsFile(FileSystem fileSystem, List<DartSdkVersion> versions) {
   fileSystem
       .file('versions.json')
-      .writeAsStringSync(JsonEncoder.withIndent('    ').convert({
-        for (var version in versions)
-          version.channel: {
-            'version': version.version.toString(),
-            'sha256': version.sha256,
-          }
-      }));
+      .writeAsStringSync(
+        JsonEncoder.withIndent('    ').convert({
+          for (var version in versions)
+            version.channel: {
+              'version': version.version.toString(),
+              'sha256': version.sha256,
+            },
+        }),
+      );
 }
 
 class DartSdkVersion {
-  static final baseUri =
-      Uri.https('storage.googleapis.com', 'dart-archive/channels/');
+  static final baseUri = Uri.https(
+    'storage.googleapis.com',
+    'dart-archive/channels/',
+  );
 
   final String channel;
   Version version;
@@ -47,7 +55,10 @@ class DartSdkVersion {
   DartSdkVersion(this.channel, this.version, this.sha256, this._read);
 
   factory DartSdkVersion.fromJson(
-      String channel, Map<String, dynamic> json, HttpRead read) {
+    String channel,
+    Map<String, dynamic> json,
+    HttpRead read,
+  ) {
     var version = Version.parse(json['version']!);
     var sha256 = (json['sha256']! as Map).cast<String, String>();
     return DartSdkVersion(channel, version, sha256, read);
@@ -67,7 +78,7 @@ class DartSdkVersion {
         '$major.$minor',
         '$major',
         'stable',
-        'latest'
+        'latest',
       ];
     }
     if (channel == 'beta') {
@@ -102,8 +113,9 @@ class DartSdkVersion {
     var sha256 = <String, String>{};
     for (var arch in ['x64', 'arm', 'arm64']) {
       var sdk = 'dartsdk-linux-$arch-release.zip';
-      var sha256Url =
-          baseUri.resolve('$channel/release/$version/sdk/$sdk.sha256sum');
+      var sha256Url = baseUri.resolve(
+        '$channel/release/$version/sdk/$sdk.sha256sum',
+      );
       var sha256sum = await _read(sha256Url);
       if (!sha256sum.trim().endsWith(sdk)) {
         throw StateError("Expected file name $sdk in sha256sum:\n$sha256sum");
