@@ -42,10 +42,12 @@ class TestFileSystem {
   factory TestFileSystem.build(Map<String, String> files) {
     var contexts = <String>[];
     var operations = <FileSystemOp>[];
-    var fileSystem = MemoryFileSystem(opHandle: (context, op) {
-      contexts.add(context);
-      operations.add(op);
-    });
+    var fileSystem = MemoryFileSystem(
+      opHandle: (context, op) {
+        contexts.add(context);
+        operations.add(op);
+      },
+    );
     for (var file in files.entries) {
       fileSystem.file(file.key)
         ..createSync(recursive: true)

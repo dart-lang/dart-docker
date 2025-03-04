@@ -8,10 +8,16 @@ import 'package:test/test.dart';
 
 import 'utils.dart';
 
-final stable = DartSdkVersion('stable', Version.parse('2.12.4'),
-    {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead);
-final beta = DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'),
-    {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'}, fakeRead);
+final stable = DartSdkVersion('stable', Version.parse('2.12.4'), {
+  'x64': 'abc',
+  'arm': 'def',
+  'arm64': 'ghi',
+}, fakeRead);
+final beta = DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'), {
+  'x64': 'jmn',
+  'arm': 'opq',
+  'arm64': 'rst',
+}, fakeRead);
 
 void main() {
   test('fromJson', () {
@@ -38,14 +44,24 @@ void main() {
       '2.12',
       '2',
       'stable',
-      'latest'
+      'latest',
     ]);
-    expect(versions['beta']?.tags,
-        ['2.13.0-211.6.beta-sdk', 'beta-sdk', '2.13.0-211.6.beta', 'beta']);
-    expect(versions['stable']?.sha256,
-        {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'});
-    expect(
-        versions['beta']?.sha256, {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'});
+    expect(versions['beta']?.tags, [
+      '2.13.0-211.6.beta-sdk',
+      'beta-sdk',
+      '2.13.0-211.6.beta',
+      'beta',
+    ]);
+    expect(versions['stable']?.sha256, {
+      'x64': 'abc',
+      'arm': 'def',
+      'arm64': 'ghi',
+    });
+    expect(versions['beta']?.sha256, {
+      'x64': 'jmn',
+      'arm': 'opq',
+      'arm64': 'rst',
+    });
   });
 
   test('update, no update', () async {
@@ -71,9 +87,13 @@ void main() {
     var version = DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
     expect(await version.update(), true);
     expect(
-        version,
-        DartSdkVersion('stable', Version.parse('3.13.2'),
-            {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead));
+      version,
+      DartSdkVersion('stable', Version.parse('3.13.2'), {
+        'x64': 'abc',
+        'arm': 'def',
+        'arm64': 'ghi',
+      }, fakeRead),
+    );
   });
 
   test('verify version succeeds', () async {
@@ -85,13 +105,13 @@ void main() {
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'arm64-sha *dartsdk-linux-arm64-release.zip',
     });
-    var sha256 = {
-      'x64': 'x64-sha',
-      'arm': 'arm-sha',
-      'arm64': 'arm64-sha',
-    };
-    var version =
-        DartSdkVersion('stable', Version.parse('2.12.4'), sha256, read);
+    var sha256 = {'x64': 'x64-sha', 'arm': 'arm-sha', 'arm64': 'arm64-sha'};
+    var version = DartSdkVersion(
+      'stable',
+      Version.parse('2.12.4'),
+      sha256,
+      read,
+    );
     await version.verify();
   });
 
@@ -104,13 +124,13 @@ void main() {
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'arm64-sha *dartsdk-linux-arm64-release.zip',
     });
-    var sha256 = {
-      'x64': 'wrong-sha',
-      'arm': 'wrong-sha',
-      'arm64': 'wrong-sha',
-    };
-    var version =
-        DartSdkVersion('stable', Version.parse('2.12.4'), sha256, read);
+    var sha256 = {'x64': 'wrong-sha', 'arm': 'wrong-sha', 'arm64': 'wrong-sha'};
+    var version = DartSdkVersion(
+      'stable',
+      Version.parse('2.12.4'),
+      sha256,
+      read,
+    );
     expect(() async => await version.verify(), throwsStateError);
   });
 }

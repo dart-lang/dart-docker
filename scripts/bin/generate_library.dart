@@ -16,8 +16,9 @@ void main() {
 }
 
 void generateLibrary(FileSystem fileSystem) {
-  var read = (_, {headers}) =>
-      throw StateError("generate_library should work offline");
+  var read =
+      (_, {headers}) =>
+          throw StateError("generate_library should work offline");
   var versions = versionsFromFile(fileSystem, read);
   stdout.write(buildLibrary(commit, versions['stable']!, versions['beta']!));
 }

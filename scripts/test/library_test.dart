@@ -11,10 +11,18 @@ import 'utils.dart';
 
 void main() {
   test('build library', () {
-    var stable =
-        DartSdkVersion('stable', Version.parse("2.12.4"), {}, fakeRead);
+    var stable = DartSdkVersion(
+      'stable',
+      Version.parse("2.12.4"),
+      {},
+      fakeRead,
+    );
     var beta = DartSdkVersion(
-        'beta', Version.parse('2.13.0-211.6.beta'), {}, fakeRead);
+      'beta',
+      Version.parse('2.13.0-211.6.beta'),
+      {},
+      fakeRead,
+    );
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
 Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
@@ -35,8 +43,12 @@ Directory: beta/bookworm
   });
 
   test('build library: stable is beta', () {
-    var stable =
-        DartSdkVersion('stable', Version.parse('2.13.0'), {}, fakeRead);
+    var stable = DartSdkVersion(
+      'stable',
+      Version.parse('2.13.0'),
+      {},
+      fakeRead,
+    );
     var beta = DartSdkVersion('beta', Version.parse('2.13.0'), {}, fakeRead);
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
@@ -54,10 +66,18 @@ Directory: stable/bookworm
   });
 
   test('build library: stable is ahead of beta', () {
-    var stable =
-        DartSdkVersion('stable', Version.parse('2.13.0'), {}, fakeRead);
+    var stable = DartSdkVersion(
+      'stable',
+      Version.parse('2.13.0'),
+      {},
+      fakeRead,
+    );
     var beta = DartSdkVersion(
-        'beta', Version.parse('2.13.0-211.6.beta'), {}, fakeRead);
+      'beta',
+      Version.parse('2.13.0-211.6.beta'),
+      {},
+      fakeRead,
+    );
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
 Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)

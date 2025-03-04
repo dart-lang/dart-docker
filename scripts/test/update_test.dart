@@ -17,9 +17,7 @@ void main() {
           '{"version":"2.13.0-211.14.beta"}',
     });
 
-    var fileSystem = TestFileSystem.build({
-      'versions.json': versions,
-    });
+    var fileSystem = TestFileSystem.build({'versions.json': versions});
     await update.update(fileSystem.fileSystem, read, false);
 
     expect(fileSystem.contexts, ['versions.json']);
@@ -69,10 +67,9 @@ ENV DART_SHA256_ARM     arm-sha
 ENV DART_SHA256_ARM64   arm64-sha
 ''';
     expect(
-        fileSystem.fileSystem
-            .file('beta/bookworm/Dockerfile')
-            .readAsStringSync(),
-        expected);
+      fileSystem.fileSystem.file('beta/bookworm/Dockerfile').readAsStringSync(),
+      expected,
+    );
   });
 
   test('update succeeds, dockerfile update forced', () async {
@@ -126,10 +123,9 @@ ENV DART_SHA256_ARM     opq
 ENV DART_SHA256_ARM64   rst
 ''';
     expect(
-        fileSystem.fileSystem
-            .file('beta/bookworm/Dockerfile')
-            .readAsStringSync(),
-        expectedBeta);
+      fileSystem.fileSystem.file('beta/bookworm/Dockerfile').readAsStringSync(),
+      expectedBeta,
+    );
 
     const expectedStable = '''
 ENV DART_CHANNEL        stable
@@ -139,9 +135,10 @@ ENV DART_SHA256_ARM     def
 ENV DART_SHA256_ARM64   ghi
 ''';
     expect(
-        fileSystem.fileSystem
-            .file('stable/bookworm/Dockerfile')
-            .readAsStringSync(),
-        expectedStable);
+      fileSystem.fileSystem
+          .file('stable/bookworm/Dockerfile')
+          .readAsStringSync(),
+      expectedStable,
+    );
   });
 }

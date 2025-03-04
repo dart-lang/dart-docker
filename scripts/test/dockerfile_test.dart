@@ -9,8 +9,11 @@ import 'package:test/test.dart';
 
 import 'utils.dart';
 
-var version = DartSdkVersion('stable', Version.parse('3.14.1'),
-    {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'}, fakeRead);
+var version = DartSdkVersion('stable', Version.parse('3.14.1'), {
+  'x64': 'abc',
+  'arm': 'def',
+  'arm64': 'ghi',
+}, fakeRead);
 
 void main() {
   test('build dockerfile', () {

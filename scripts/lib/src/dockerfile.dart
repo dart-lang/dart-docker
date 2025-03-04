@@ -13,14 +13,16 @@ String buildDockerfile(DartSdkVersion version, String template) {
     'DART_SHA256_ARM': version.sha256['arm'],
     'DART_SHA256_ARM64': version.sha256['arm64'],
   };
-  var dockerfile =
-      template.splitMapJoin(RegExp(r'{{(.*?)}}'), onMatch: (match) {
-    var value = variables.remove(match[1]!);
-    if (value == null) {
-      throw StateError('Unknown template variable ${match[1]}');
-    }
-    return value;
-  });
+  var dockerfile = template.splitMapJoin(
+    RegExp(r'{{(.*?)}}'),
+    onMatch: (match) {
+      var value = variables.remove(match[1]!);
+      if (value == null) {
+        throw StateError('Unknown template variable ${match[1]}');
+      }
+      return value;
+    },
+  );
   if (variables.isNotEmpty) {
     throw ArgumentError.value(template, 'template', 'missing $variables');
   }
