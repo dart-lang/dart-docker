@@ -10,7 +10,7 @@ import 'package:scripts/src/versions.dart';
 /// [commit] and [versions].
 String buildLibrary(String commit, DartSdkVersion stable, DartSdkVersion beta) {
   var library = StringBuffer('''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Tony Pujals <tonypujals@google.com> (@subfuzion)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Ivan Inozemtsev <iinozemtsev@google.com> (@iinozemtsev)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: $commit
