@@ -32,14 +32,17 @@ Future<void> update(
     }
   }
   if (force || updated.isNotEmpty) {
-    final template =
-        fileSystem.file('Dockerfile-debian.template').readAsStringSync();
+    final template = fileSystem
+        .file('Dockerfile-debian.template')
+        .readAsStringSync();
     writeVersionsFile(fileSystem, [versions['stable']!, versions['beta']!]);
     for (final version in updated) {
       final dockerfileContent = buildDockerfile(version, template);
-      final dockerfile = (await fileSystem
-          .directory('${version.channel}/bookworm')
-          .create(recursive: true)).childFile('Dockerfile');
+      final dockerfile =
+          (await fileSystem
+                  .directory('${version.channel}/bookworm')
+                  .create(recursive: true))
+              .childFile('Dockerfile');
       await dockerfile.writeAsString(dockerfileContent);
     }
   }
