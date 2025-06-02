@@ -3,7 +3,7 @@ description: Scripts that support the creation of Dart's docker images.
 version: 0.0.1
 publish_to: none
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.8.0
 
 dependencies:
   args: ^2.7.0
