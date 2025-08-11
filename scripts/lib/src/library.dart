@@ -31,7 +31,7 @@ String _imageData(Iterable<String> tags, String channel) =>
 
 Tags: ${tags.join(', ')}
 Architectures: amd64, arm32v7, arm64v8
-Directory: $channel/bookworm
+Directory: $channel/trixie
 ''';
 
 /// Uses `git rev-parse HEAD` to get the hash of the current commit.

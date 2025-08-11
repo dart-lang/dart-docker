@@ -40,7 +40,7 @@ Future<void> update(
       final dockerfileContent = buildDockerfile(version, template);
       final dockerfile =
           (await fileSystem
-                  .directory('${version.channel}/bookworm')
+                  .directory('${version.channel}/trixie')
                   .create(recursive: true))
               .childFile('Dockerfile');
       await dockerfile.writeAsString(dockerfileContent);

@@ -40,7 +40,7 @@ void main() {
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'beta/bookworm/Dockerfile': '',
+      'beta/trixie/Dockerfile': '',
     });
 
     await update.update(fileSystem.fileSystem, read, false);
@@ -49,8 +49,8 @@ void main() {
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'beta/bookworm',
-      'beta/bookworm/Dockerfile',
+      'beta/trixie',
+      'beta/trixie/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
@@ -67,7 +67,7 @@ ENV DART_SHA256_ARM     arm-sha
 ENV DART_SHA256_ARM64   arm64-sha
 ''';
     expect(
-      fileSystem.fileSystem.file('beta/bookworm/Dockerfile').readAsStringSync(),
+      fileSystem.fileSystem.file('beta/trixie/Dockerfile').readAsStringSync(),
       expected,
     );
   });
@@ -83,12 +83,12 @@ ENV DART_SHA256_ARM64   arm64-sha
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
       'Dockerfile-debian.template': dockerfileTemplate,
-      'stable/bookworm/Dockerfile': '''
+      'stable/trixie/Dockerfile': '''
 ENV DART_CHANNEL        bugged
 ENV DART_VERSION   weird
 ENV DART_SHA256    off
 ''',
-      'beta/bookworm/Dockerfile': '''
+      'beta/trixie/Dockerfile': '''
 ENV DART_CHANNEL        outdated
 ENV DART_VERSION   wrong
 ENV DART_SHA256    incorrect
@@ -101,10 +101,10 @@ ENV DART_SHA256    incorrect
       'versions.json',
       'Dockerfile-debian.template',
       'versions.json',
-      'stable/bookworm',
-      'stable/bookworm/Dockerfile',
-      'beta/bookworm',
-      'beta/bookworm/Dockerfile',
+      'stable/trixie',
+      'stable/trixie/Dockerfile',
+      'beta/trixie',
+      'beta/trixie/Dockerfile',
     ]);
     expect(fileSystem.operations, [
       FileSystemOp.read,
@@ -123,7 +123,7 @@ ENV DART_SHA256_ARM     opq
 ENV DART_SHA256_ARM64   rst
 ''';
     expect(
-      fileSystem.fileSystem.file('beta/bookworm/Dockerfile').readAsStringSync(),
+      fileSystem.fileSystem.file('beta/trixie/Dockerfile').readAsStringSync(),
       expectedBeta,
     );
 
@@ -135,9 +135,7 @@ ENV DART_SHA256_ARM     def
 ENV DART_SHA256_ARM64   ghi
 ''';
     expect(
-      fileSystem.fileSystem
-          .file('stable/bookworm/Dockerfile')
-          .readAsStringSync(),
+      fileSystem.fileSystem.file('stable/trixie/Dockerfile').readAsStringSync(),
       expectedStable,
     );
   });
