@@ -36,6 +36,8 @@ void main() {
           'arm-sha *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/beta/release/2.14.0-16.1.beta/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'arm64-sha *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/beta/release/2.14.0-16.1.beta/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'riscv64-sha *dartsdk-linux-riscv64-release.zip',
     });
     var fileSystem = TestFileSystem.build({
       'versions.json': versions,
@@ -65,6 +67,7 @@ ENV DART_VERSION        2.14.0-16.1.beta
 ENV DART_SHA256_X64     x64-sha
 ENV DART_SHA256_ARM     arm-sha
 ENV DART_SHA256_ARM64   arm64-sha
+ENV DART_SHA256_RISCV64 riscv64-sha
 ''';
     expect(
       fileSystem.fileSystem.file('beta/trixie/Dockerfile').readAsStringSync(),
@@ -121,6 +124,7 @@ ENV DART_VERSION        2.13.0-211.14.beta
 ENV DART_SHA256_X64     jmn
 ENV DART_SHA256_ARM     opq
 ENV DART_SHA256_ARM64   rst
+ENV DART_SHA256_RISCV64 uvw
 ''';
     expect(
       fileSystem.fileSystem.file('beta/trixie/Dockerfile').readAsStringSync(),
@@ -133,6 +137,7 @@ ENV DART_VERSION        2.12.4
 ENV DART_SHA256_X64     abc
 ENV DART_SHA256_ARM     def
 ENV DART_SHA256_ARM64   ghi
+ENV DART_SHA256_RISCV64 jkl
 ''';
     expect(
       fileSystem.fileSystem.file('stable/trixie/Dockerfile').readAsStringSync(),

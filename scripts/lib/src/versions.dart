@@ -111,7 +111,7 @@ class DartSdkVersion {
 
   Future<Map<String, String>> _readSha256(Version version) async {
     var sha256 = <String, String>{};
-    for (var arch in ['x64', 'arm', 'arm64']) {
+    for (var arch in ['x64', 'arm', 'arm64', 'riscv64']) {
       var sdk = 'dartsdk-linux-$arch-release.zip';
       var sha256Url = baseUri.resolve(
         '$channel/release/$version/sdk/$sdk.sha256sum',

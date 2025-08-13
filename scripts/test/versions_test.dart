@@ -12,11 +12,13 @@ final stable = DartSdkVersion('stable', Version.parse('2.12.4'), {
   'x64': 'abc',
   'arm': 'def',
   'arm64': 'ghi',
+  'riscv64': 'jkl',
 }, fakeRead);
 final beta = DartSdkVersion('beta', Version.parse('2.13.0-211.6.beta'), {
   'x64': 'jmn',
   'arm': 'opq',
   'arm64': 'rst',
+  'riscv64': 'uvw',
 }, fakeRead);
 
 void main() {
@@ -24,11 +26,21 @@ void main() {
     var versions = versionsFromJson(<String, dynamic>{
       'stable': {
         'version': '2.12.4',
-        'sha256': {'x64': 'abc', 'arm': 'def', 'arm64': 'ghi'},
+        'sha256': {
+          'x64': 'abc',
+          'arm': 'def',
+          'arm64': 'ghi',
+          'riscv64': 'jkl',
+        },
       },
       'beta': {
         'version': '2.13.0-211.6.beta',
-        'sha256': {'x64': 'jmn', 'arm': 'opq', 'arm64': 'rst'},
+        'sha256': {
+          'x64': 'jmn',
+          'arm': 'opq',
+          'arm64': 'rst',
+          'riscv64': 'uvw',
+        },
       },
     }, fakeRead);
 
@@ -56,11 +68,13 @@ void main() {
       'x64': 'abc',
       'arm': 'def',
       'arm64': 'ghi',
+      'riscv64': 'jkl',
     });
     expect(versions['beta']?.sha256, {
       'x64': 'jmn',
       'arm': 'opq',
       'arm64': 'rst',
+      'riscv64': 'uvw',
     });
   });
 
@@ -83,6 +97,8 @@ void main() {
           'def *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/stable/release/3.13.2/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'ghi *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/stable/release/3.13.2/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'jkl *dartsdk-linux-riscv64-release.zip',
     });
     var version = DartSdkVersion('stable', Version.parse('2.12.4'), {}, read);
     expect(await version.update(), true);
@@ -92,6 +108,7 @@ void main() {
         'x64': 'abc',
         'arm': 'def',
         'arm64': 'ghi',
+        'riscv64': 'jkl',
       }, fakeRead),
     );
   });
@@ -104,8 +121,15 @@ void main() {
           'arm-sha *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'arm64-sha *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'riscv64-sha *dartsdk-linux-riscv64-release.zip',
     });
-    var sha256 = {'x64': 'x64-sha', 'arm': 'arm-sha', 'arm64': 'arm64-sha'};
+    var sha256 = {
+      'x64': 'x64-sha',
+      'arm': 'arm-sha',
+      'arm64': 'arm64-sha',
+      'riscv64': 'riscv64-sha',
+    };
     var version = DartSdkVersion(
       'stable',
       Version.parse('2.12.4'),
@@ -123,6 +147,8 @@ void main() {
           'arm-sha *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'arm64-sha *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'riscv64-sha *dartsdk-linux-riscv64-release.zip',
     });
     var sha256 = {'x64': 'wrong-sha', 'arm': 'wrong-sha', 'arm64': 'wrong-sha'};
     var version = DartSdkVersion(

@@ -23,12 +23,16 @@ void main() {
           'def *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'ghi *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'jkl *dartsdk-linux-riscv64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-x64-release.zip.sha256sum':
           'jmn *dartsdk-linux-x64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm-release.zip.sha256sum':
           'opq *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'rst *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'uvw *dartsdk-linux-riscv64-release.zip',
     });
 
     await verify.verify(fileSystem, read);
@@ -42,6 +46,8 @@ void main() {
           'def *dartsdk-linux-arm-release.zip',
       '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-arm64-release.zip.sha256sum':
           'ghi *dartsdk-linux-arm64-release.zip',
+      '/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-linux-riscv64-release.zip.sha256sum':
+          'uvw *dartsdk-linux-riscv64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-x64-release.zip.sha256sum':
           'jmn *dartsdk-linux-x64-release.zip',
       '/dart-archive/channels/beta/release/2.13.0-211.14.beta/sdk/dartsdk-linux-arm-release.zip.sha256sum':
