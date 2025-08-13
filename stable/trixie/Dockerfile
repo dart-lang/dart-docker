@@ -29,6 +29,10 @@ RUN set -eux; \
             TRIPLET="aarch64-linux-gnu" ; \
             FILES="/lib/ld-linux-aarch64.so.1 \
                 /lib/aarch64-linux-gnu/ld-linux-aarch64.so.1" ;; \
+        riscv64) \
+            TRIPLET="riscv64-linux-gnu" ; \
+            FILES="/lib/ld-linux-riscv64-lp64d.so.1 \
+                /lib/riscv64-linux-gnu/ld-linux-riscv64-lp64d.so.1" ;; \
         *) \
             echo "Unsupported architecture" ; \
             exit 5;; \
@@ -57,18 +61,21 @@ WORKDIR /root
 RUN set -eux; \
     case "$(dpkg --print-architecture)" in \
         amd64) \
-            DART_SHA256=008cefb88505760ae514062d576255305c2bcba40b0f9b7c70fd524d786d122d; \
+            DART_SHA256=75bf2badc56cd6aff829042a0112ca5f3cf50bcf7fd95c29bc76650579dc00e1; \
             SDK_ARCH="x64";; \
         armhf) \
-            DART_SHA256=61ef78b034bc9b8f2b1a27166c30eccac2b1b5c7c491fdfaf50d9137d89328d7; \
+            DART_SHA256=c2bc9f74f3d77ff5e2d66b10eb9acb81e1978ef7ec88772a8a0231d0dbc526ac; \
             SDK_ARCH="arm";; \
         arm64) \
-            DART_SHA256=2396d820adbd3bd15f334cdb1aefbbc32f473d1fdf06315af122dcd7c7269671; \
+            DART_SHA256=e9a028b0be5325e2cbf5118ab6c6c407d302fb220ae5dc7d9d6f5648676fb724; \
             SDK_ARCH="arm64";; \
+        riscv64) \
+            DART_SHA256=81df475711bf672ef4d04bcbef3cc563b6e9224ba0742f73cd538ff649361d74; \
+            SDK_ARCH="riscv64";; \
     esac; \
     SDK="dartsdk-linux-${SDK_ARCH}-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
-    URL="$BASEURL/stable/release/3.8.3/sdk/$SDK"; \
+    URL="$BASEURL/stable/release/3.9.0/sdk/$SDK"; \
     echo "SDK: $URL" >> dart_setup.log ; \
     curl -fLO "$URL"; \
     echo "$DART_SHA256 *$SDK" \
