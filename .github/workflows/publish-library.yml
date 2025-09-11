@@ -1,0 +1,60 @@
+name: Publish Docker Library
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'beta/**'
+      - 'stable/**'
+
+jobs:
+  publish-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c
+      - name: Install dependencies
+        run: dart pub get
+        working-directory: scripts
+      - name: Generate library file
+        id: generate
+        run: |
+          dart scripts/bin/generate_library.dart > dart
+          echo "library_path=dart" >> $GITHUB_OUTPUT
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.PUBLISH_LIBRARY_TOKEN }}
+        run: |
+          set -x
+          git config --global user.name "dart-github-bot"
+          git config --global user.email "153310641+dart-github-bot@users.noreply.github.com"
+
+          gh repo fork docker-library/official-images --clone=true --remote
+          cd official-images
+
+          git fetch upstream
+
+          git checkout -B dart-library-update upstream/master
+
+          cp ../${{ steps.generate.outputs.library_path }} library/dart
+
+          git add library/dart
+          git commit -m "Update dart"
+
+          git push --force --set-upstream origin dart-library-update
+
+          if ! gh pr list --repo docker-library/official-images --head "dart-github-bot:dart-library-update" --json number | grep -q number; then
+          BODY=$(cat <<EOF
+          This is an automated PR to update the Dart Docker library.
+
+          cc @iinozemtsev @athom
+          EOF
+          )
+            gh pr create \
+              --title "Update dart" \
+              --body "$BODY" \
+              --repo docker-library/official-images \
+              --base master \
+              --head "dart-github-bot:dart-library-update"
+          fi
