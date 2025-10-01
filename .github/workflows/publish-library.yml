@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - '.github/workflows/publish-library.yml'
       - 'beta/**'
       - 'stable/**'
 
@@ -30,7 +31,8 @@ jobs:
           git config --global user.name "dart-github-bot"
           git config --global user.email "153310641+dart-github-bot@users.noreply.github.com"
 
-          gh repo fork docker-library/official-images --clone=true --remote
+          gh repo sync dart-github-bot/official-images
+          gh repo clone dart-github-bot/official-images
           cd official-images
 
           git fetch upstream
