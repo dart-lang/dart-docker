@@ -9,12 +9,12 @@
         }
     },
     "beta": {
-        "version": "3.11.0-296.5.beta",
+        "version": "3.12.0-113.1.beta",
         "sha256": {
-            "x64": "eb9219df3dd42f13ef890bbfb0b68a635abae5b749d6bfe4ce9295e03c72cfe4",
-            "arm": "075a1ae7671259f50ae82df7e9d95917ac39d0253612e69e030bf55a8d382886",
-            "arm64": "f42a844c29c593569053baf722a65df0ae63d3a76e3c90ef0604edd8a9f0297d",
-            "riscv64": "e35901b2ae4b20343be9acd6cdb13984597e097398616f66a4567cc0c18df4d0"
+            "x64": "1af09b9c663079f5bdd76388d375e3051cfcadab625cd8705fde5970eb0b73e6",
+            "arm": "514a2c3363b8cef13206d98f191eefadafa3876d06c625221071b1a3f3b98157",
+            "arm64": "13926be703ee660f53eacafecc3d46034aed73bc65a2d0265e2e7b67f41364b7",
+            "riscv64": "4e21c75c2e1e6e3cb6878f154d257e96e96490acb257bb5d77af5d3709fb97f7"
         }
     }
 }
