@@ -46,7 +46,7 @@ jobs:
 
           git push --force --set-upstream origin dart-library-update
 
-          if ! gh pr list --repo docker-library/official-images --head "dart-github-bot:dart-library-update" --json number | grep -q number; then
+          if ! gh pr list --repo docker-library/official-images --author dart-github-bot --head dart-library-update --json number | grep -q number; then
           BODY=$(cat <<EOF
           This is an automated PR to update the Dart Docker library.
 
