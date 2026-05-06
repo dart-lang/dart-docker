@@ -1,20 +1,20 @@
 {
     "stable": {
-        "version": "3.11.5",
+        "version": "3.11.6",
         "sha256": {
-            "x64": "57f3ab5ac24883060b1ff12bcdac472ed76563ec7364e88f8a6d41e4f0db075f",
-            "arm": "27a3fd1eed416866171c833e98081d051ec7667d6c6f1d4a6d8f5637ac852433",
-            "arm64": "50e9aba58f8717943854778a73074e63a80c42054355d35e2732a0cc0824a2fb",
-            "riscv64": "c4b5be61da02b440e82b02cf9084cafbbdd401b4bff1c436afcf0d634d696f40"
+            "x64": "ea0ff2396ea5af402ba3598a9139a0f4b1b3471d9d7e834882d1559622760add",
+            "arm": "ba594177d23c372c02a80dbeacd418094f78f44bfb67a60636cc32eafb662185",
+            "arm64": "3c1299f468eba0fd77cf9b82d7e768382c1e980837b60ca774a2ceb4f9d7db4b",
+            "riscv64": "e851173310f74901423b8ebab27fccd15d0f166f682b346fb8c553b1c39bac09"
         }
     },
     "beta": {
-        "version": "3.12.0-327.4.beta",
+        "version": "3.12.0-327.5.beta",
         "sha256": {
-            "x64": "60484d3bb620de44f11b0078571f288fe1b5c6207369e4a5a92a0d942fe183d7",
-            "arm": "bd92bd905c5208ce6b7063db7a820ae78d90b9d4c0b6a9d1091e794a93721d8d",
-            "arm64": "1053dde7acf75a594b81f1612e7eab427a62b69f73339667b87f6224e705e695",
-            "riscv64": "90eafc92bc56cc141462cae7aef2ce02bcc1a0111e68be67bc188cf695fbf46b"
+            "x64": "ccf7731b12d893775e11baed34447193ea314383314155a26167f319cece58b5",
+            "arm": "c25833e91bcdcd7d0726257e97272ad15f2c4162f0b6a9a1c4fb350a2b5df6c3",
+            "arm64": "e09bb89a033fa2351964debcfeb6638b40aa3c9d8d1b05ee72fe1ab850c99397",
+            "riscv64": "3e5d12e69de4924f2eceae9da726972e991c33a687ba10277a0fbbe2b9886faa"
         }
     }
 }
