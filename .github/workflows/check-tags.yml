@@ -34,7 +34,7 @@ jobs:
             cat versions.json | jq -r ".${channel}.sha256 | keys | .[]" | \
               sed s/x64/amd64/ | sort > ${channel}_expected
             cat ${channel}_manifest | jq -r \
-              '[.manifests[].platform.architecture] | sort | .[]' \
+              '[.manifests[].platform.architecture | select(. != "unknown")] | sort | .[]' \
               > ${channel}_found
             diff ${channel}_expected ${channel}_found
           done
