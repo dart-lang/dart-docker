@@ -7,6 +7,9 @@ on:
       - 'beta/**'
       - 'stable/**'
 
+permissions:
+  contents: read
+
 jobs:
   publish-library:
     runs-on: ubuntu-latest
@@ -25,6 +28,7 @@ jobs:
       - name: Create Pull Request
         env:
           GH_TOKEN: ${{ secrets.PUBLISH_LIBRARY_TOKEN }}
+          LIBRARY_PATH: ${{ steps.generate.outputs.library_path }}
         run: |
           set -x
           git config --global user.name "dart-github-bot"
@@ -39,7 +43,7 @@ jobs:
 
           git checkout -B dart-library-update upstream/master
 
-          cp ../${{ steps.generate.outputs.library_path }} library/dart
+          cp ../"$LIBRARY_PATH" library/dart
 
           git add library/dart
           git commit -m "Update dart"
