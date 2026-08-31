@@ -11,6 +11,9 @@ on:
 env:
   PUB_ENVIRONMENT: bot.github
 
+permissions:
+  contents: read
+
 jobs:
   generate-library:
     runs-on: ubuntu-latest
