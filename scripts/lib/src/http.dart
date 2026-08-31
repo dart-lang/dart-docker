@@ -5,8 +5,10 @@
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
 
-typedef HttpRead =
-    Future<String> Function(Uri url, {Map<String, String>? headers});
+typedef HttpRead = Future<String> Function(
+  Uri url, {
+  Map<String, String>? headers,
+});
 
 Future<String> read(Uri url, {Map<String, String>? headers}) async {
   final client = RetryClient(Client());
