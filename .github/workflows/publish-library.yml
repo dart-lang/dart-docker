@@ -54,7 +54,7 @@ jobs:
           BODY=$(cat <<EOF
           This is an automated PR to update the Dart Docker library.
 
-          cc @iinozemtsev @athomas
+          cc @srawlins @athomas
           EOF
           )
             gh pr create \

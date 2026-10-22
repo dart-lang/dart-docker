@@ -25,7 +25,7 @@ void main() {
     );
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Ivan Inozemtsev <iinozemtsev@google.com> (@iinozemtsev)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Sam Rawlins <srawlins@google.com> (@srawlins)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: abcdef
@@ -52,7 +52,7 @@ Directory: beta/trixie
     var beta = DartSdkVersion('beta', Version.parse('2.13.0'), {}, fakeRead);
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Ivan Inozemtsev <iinozemtsev@google.com> (@iinozemtsev)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Sam Rawlins <srawlins@google.com> (@srawlins)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: abcdef
@@ -80,7 +80,7 @@ Directory: stable/trixie
     );
     var library = buildLibrary('abcdef', stable, beta);
     var expected = '''
-Maintainers: Alexander Thomas <athom@google.com> (@athomas), Ivan Inozemtsev <iinozemtsev@google.com> (@iinozemtsev)
+Maintainers: Alexander Thomas <athom@google.com> (@athomas), Sam Rawlins <srawlins@google.com> (@srawlins)
 GitRepo: https://github.com/dart-lang/dart-docker.git
 GitFetch: refs/heads/main
 GitCommit: abcdef
